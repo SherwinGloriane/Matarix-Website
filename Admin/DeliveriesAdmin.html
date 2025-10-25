@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Management - MATARIX</title>
+    
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Link to External CSS File -->
+    <link rel="stylesheet" href="../Admin_assets/css/DeliveriesAdmin.css">
+</head>
+<body>
+    
+    <!-- ==========================================
+         MAIN HEADER SECTION - DEFAULT FOR ALL ADMIN PAGES
+    ========================================== -->
+     <!-- MAIN HEADER SECTION -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                
+                <!-- LEFT SECTION: MATARIX Logo -->
+                <div class="col-md-4">
+                    <div class="logo-container">
+                        <!-- MATARIX LOGO IMAGE -->
+                        <img src="../Admin_assets/images/logo.png" alt="MATARIX Logo" class="logo-image">
+                    </div>
+                </div>
+                
+                <!-- CENTER SECTION: Empty (Search removed) -->
+                <div class="col-md-4"></div>
+                
+                 <!-- RIGHT SECTION: Header Action Icons -->
+                <div class="col-md-4">
+                    <div class="header-actions">
+                        <!-- EMAIL/MESSAGES ICON BUTTON -->
+                        <button class="header-action-btn" id="messages-btn">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+
+                       <!-- USER PROFILE ICON BUTTON - Now clickable with href -->
+                        <a href="../Admin/AdminProfile.html" class="header-action-btn" id="profile-btn">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN LAYOUT CONTAINER
+    ========================================== -->
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="row">
+                
+               <!-- LEFT SIDEBAR NAVIGATION -->
+                <aside class="col-md-2 sidebar-container">
+                    <nav class="sidebar-nav">
+                        
+                        <!-- SIDEBAR NAVIGATION LINKS -->
+                        <ul class="nav-links">
+                            <!-- ORDERS NAVIGATION LINK (ACTIVE) -->
+                            <li>
+                                <a href="../Admin/OrdersAdmin.html" class="nav-link" id="orders-nav">
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            
+                            <!-- INVENTORY NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/InventoryAdmin.html" class="nav-link" id="inventory-nav">
+                                    <span>Inventory</span>
+                                </a>
+                            </li>
+                            
+                            <!-- DELIVERIES NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/DeliveriesAdmin.html" class="nav-link active" id="deliveries-nav">
+                                    <span>Deliveries</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ANALYTICS NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/ReportsAdmin.html" class="nav-link" id="analytics-nav">
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            
+                            <!-- USER MANAGEMENT NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/UserManagement.html" class="nav-link" id="user-management-nav">
+                                    <span>User Management</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ABOUT US NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/AboutUs.html" class="nav-link" id="about-nav">
+                                    <span>About us</span>
+                                </a>
+                            </li>
+                        </ul>     
+                    </nav>
+                    
+                    <!-- SIDEBAR FOOTER WITH LOGOUT BUTTON -->
+                    <div class="sidebar-footer">
+                        <button class="logout-button" onclick="window.location.href='../Admin/AdminLogin.html'">Logout</button>
+                    </div>
+
+                </aside>
+                
+                <!-- ==========================================
+                     MAIN CONTENT AREA - DELIVERY MANAGEMENT PAGE
+                ========================================== -->
+                <main class="col-md-10 main-content">
+                    
+                    <!-- PAGE HEADER SECTION -->
+                    <div class="page-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h1 class="page-title">Delivery Management</h1>
+                                <p class="page-subtitle">Track deliveries, manage drivers and monitor fleet</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="header-actions-right">
+                                    <!-- FILTER BUTTON -->
+                                    <button class="filter-btn" id="filter-btn">
+                                        <i class="fas fa-filter"></i>
+                                        <span>Filter</span>
+                                    </button>
+                                    <!-- EXPORT BUTTON -->
+                                    <button class="export-btn" id="export-btn">
+                                        <i class="fas fa-download"></i>
+                                        <span>Export</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- DELIVERY STATISTICS CARDS -->
+                    <div class="delivery-stats">
+                        <div class="row">
+                            
+                            <!-- TOTAL DELIVERIES STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-content">
+                                        <div class="stat-info">
+                                            <h4 class="stat-label">Total Deliveries</h4>
+                                            <div class="stat-number">4</div>
+                                            <small class="stat-sublabel">This month</small>
+                                        </div>
+                                        <div class="stat-icon">
+                                            <!-- TOTAL DELIVERIES ICON PLACEHOLDER -->
+                                            <img src="../Admin_assets/images/DeliveriesIcon.svg" alt="Total Deliveries Icon" class="stat-icon-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- ACTIVE DELIVERIES STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-content">
+                                        <div class="stat-info">
+                                            <h4 class="stat-label">Active Deliveries</h4>
+                                            <div class="stat-number">2</div>
+                                            <small class="stat-sublabel">In progress</small>
+                                        </div>
+                                        <div class="stat-icon">
+                                            <!-- ACTIVE DELIVERIES ICON PLACEHOLDER -->
+                                            <img src="../Admin_assets/images/ActiveDelivery.svg" alt="Active Deliveries Icon" class="stat-icon-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- ACTIVE DRIVERS STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-content">
+                                        <div class="stat-info">
+                                            <h4 class="stat-label">Active Drivers</h4>
+                                            <div class="stat-number">2</div>
+                                            <small class="stat-sublabel">Today</small>
+                                        </div>
+                                        <div class="stat-icon">
+                                            <!-- ACTIVE DRIVERS ICON PLACEHOLDER -->
+                                            <img src="../Admin_assets/images/ActiveDrivers.svg" alt="Active Drivers Icon" class="stat-icon-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- DELIVERY TABS NAVIGATION -->
+                    <div class="delivery-tabs">
+                        <!-- ACTIVE DELIVERIES TAB (DEFAULT ACTIVE) -->
+                        <button class="tab-btn active" id="active-deliveries-tab" data-tab="active-deliveries">Active Deliveries</button>
+                        <!-- DRIVERS TAB -->
+                        <button class="tab-btn" id="drivers-tab" data-tab="drivers">Drivers</button>
+                        <!-- FLEET TAB -->
+                        <button class="tab-btn" id="fleet-tab" data-tab="fleet">Fleet</button>
+                    </div>
+                    
+                    <!-- ==========================================
+                         TAB CONTENT SECTIONS
+                    ========================================== -->
+                    
+                    <!-- ACTIVE DELIVERIES TAB CONTENT -->
+                    <div class="tab-content active" id="active-deliveries-content">
+                        <div class="active-deliveries-section">
+                            
+                            <!-- SECTION HEADER -->
+                            <div class="section-header">
+                                <h2 class="section-title">Active Deliveries</h2>
+                                <p class="section-subtitle">Delivery tracking and management</p>
+                            </div>
+                            
+                            <!-- DELIVERY CARDS CONTAINER -->
+                            <div class="delivery-cards">
+                                
+                                <!-- DELIVERY CARD 1 -->
+                                <div class="delivery-card">
+                                    <div class="card-header">
+                                        <div class="delivery-id">
+                                            <!-- DELIVERY TRUCK ICON PLACEHOLDER -->
+                                            <div class="delivery-icon">
+                                                <img src="../Admin_assets/images/DeliveriesIcon.svg" alt="Delivery Truck" class="delivery-icon-img">
+                                            </div>
+                                            <div class="delivery-details">
+                                                <h3 class="delivery-code">DEL-2025-001</h3>
+                                                <p class="customer-name">Carla Mendoza</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <!-- VIEW DELIVERY BUTTON -->
+                                            <button class="action-btn view-btn" id="view-delivery-001">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <!-- MORE OPTIONS BUTTON -->
+                                            <button class="action-btn more-btn" id="more-delivery-001">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- DELIVERY ADDRESS -->
+                                        <div class="delivery-info">
+                                            <i class="fas fa-map-marker-alt info-icon"></i>
+                                            <span class="delivery-address">Phase 1, Bagong Silang, Caloocan City</span>
+                                        </div>
+                                        <!-- ASSIGNED DRIVER -->
+                                        <div class="delivery-info">
+                                            <i class="fas fa-user info-icon"></i>
+                                            <span class="driver-name">Juan Santos</span>
+                                        </div>
+                                        <!-- DELIVERY STATUS -->
+                                        <div class="delivery-status">
+                                            <span class="status-label">Progress: In Transit</span>
+                                            <p class="delivery-items">1.5 km Cement (50kg), Hollow Blocks x100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- DELIVERY CARD 2 -->
+                                <div class="delivery-card">
+                                    <div class="card-header">
+                                        <div class="delivery-id">
+                                            <div class="delivery-icon">
+                                                <img src="../Admin_assets/images/DeliveriesIcon.svg" alt="Delivery Truck" class="delivery-icon-img">
+                                            </div>
+                                            <div class="delivery-details">
+                                                <h3 class="delivery-code">DEL-2025-002</h3>
+                                                <p class="customer-name">Carlo Mendoza</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <!-- VIEW DELIVERY BUTTON -->
+                                            <button class="action-btn view-btn" id="view-delivery-002">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <!-- MORE OPTIONS BUTTON -->
+                                            <button class="action-btn more-btn" id="more-delivery-002">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- DELIVERY ADDRESS -->
+                                        <div class="delivery-info">
+                                            <i class="fas fa-map-marker-alt info-icon"></i>
+                                            <span class="delivery-address">Phase 4, Bagong Silang, Caloocan City</span>
+                                        </div>
+                                        <!-- ASSIGNED DRIVER -->
+                                        <div class="delivery-info">
+                                            <i class="fas fa-user info-icon"></i>
+                                            <span class="driver-name">Maria Cruz</span>
+                                        </div>
+                                        <!-- DELIVERY STATUS -->
+                                        <div class="delivery-status">
+                                            <span class="status-label">Progress: In Transit</span>
+                                            <p class="delivery-items">2.2 km Sand (m³), Gravel x3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- DELIVERY CARD 3 -->
+                                <div class="delivery-card">
+                                    <div class="card-header">
+                                        <div class="delivery-id">
+                                            <div class="delivery-icon">
+                                                <img src="../Admin_assets/images/DeliveriesIcon.svg" alt="Delivery Truck" class="delivery-icon-img">
+                                            </div>
+                                            <div class="delivery-details">
+                                                <h3 class="delivery-code">DEL-2025-003</h3>
+                                                <p class="customer-name">Darla Mendoza</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <!-- VIEW DELIVERY BUTTON -->
+                                            <button class="action-btn view-btn" id="view-delivery-003">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <!-- MORE OPTIONS BUTTON -->
+                                            <button class="action-btn more-btn" id="more-delivery-003">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- DELIVERY ADDRESS -->
+                                        <div class="delivery-info">
+                                            <i class="fas fa-map-marker-alt info-icon"></i>
+                                            <span class="delivery-address">Phase 5, Bagong Silang, Caloocan City</span>
+                                        </div>
+                                        <!-- ASSIGNED DRIVER -->
+                                        <div class="delivery-info">
+                                            <i class="fas fa-user info-icon"></i>
+                                            <span class="driver-name">Pedro Reyes</span>
+                                        </div>
+                                        <!-- DELIVERY STATUS -->
+                                        <div class="delivery-status">
+                                            <span class="status-label">Progress: In Transit</span>
+                                            <p class="delivery-items">5.8 km Steel Rebar x50, Cement x30</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                                        <!-- DRIVERS TAB CONTENT -->
+                    <div class="tab-content" id="drivers-content">
+                        <div class="driver-management-section">
+                            
+                            <!-- SECTION HEADER -->
+                            <div class="section-header">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <h2 class="section-title">Driver Management</h2>
+                                        <p class="section-subtitle">Monitor driver performance and driver availability</p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <!-- ADD DRIVER BUTTON -->
+                                        <button class="add-driver-btn" id="add-driver-btn">
+                                            <i class="fas fa-plus"></i>
+                                            <span>Add Driver</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DRIVERS TABLE -->
+                            <div class="drivers-table-container">
+                                <div class="table-responsive">
+                                    <table class="drivers-table table">
+                                        
+                                        <!-- TABLE HEADERS -->
+                                        <thead>
+                                            <tr>
+                                                <th>Driver</th>
+                                                <th>Vehicle</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <!-- TABLE BODY WITH DRIVER ROWS -->
+                                        <tbody>
+                                            
+                                            <!-- DRIVER ROW 1 - JUAN SANTOS -->
+                                            <tr class="driver-row">
+                                                <td class="driver-name">Juan Santos</td>
+                                                <td class="vehicle-id">ABC-1234</td>
+                                                <td>
+                                                    <!-- ACTIVE STATUS BADGE -->
+                                                    <span class="status-badge status-active">Active</span>
+                                                </td>
+                                                <td>
+                                                    <div class="driver-actions">
+                                                        <!-- VIEW DRIVER BUTTON -->
+                                                        <button class="action-btn view-btn" data-driver="juan-santos" id="view-driver-juan">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <!-- EDIT DRIVER BUTTON -->
+                                                        <button class="action-btn edit-btn" data-driver="juan-santos" id="edit-driver-juan">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- DRIVER ROW 2 - MARIA CRUZ -->
+                                            <tr class="driver-row">
+                                                <td class="driver-name">Maria Cruz</td>
+                                                <td class="vehicle-id">XYZ-5678</td>
+                                                <td>
+                                                    <!-- ACTIVE STATUS BADGE -->
+                                                    <span class="status-badge status-active">Active</span>
+                                                </td>
+                                                <td>
+                                                    <div class="driver-actions">
+                                                        <!-- VIEW DRIVER BUTTON -->
+                                                        <button class="action-btn view-btn" data-driver="maria-cruz" id="view-driver-maria">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <!-- EDIT DRIVER BUTTON -->
+                                                        <button class="action-btn edit-btn" data-driver="maria-cruz" id="edit-driver-maria">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- DRIVER ROW 3 - PEDRO REYES -->
+                                            <tr class="driver-row">
+                                                <td class="driver-name">Pedro Reyes</td>
+                                                <td class="vehicle-id">DEF-9012</td>
+                                                <td>
+                                                    <!-- AVAILABLE STATUS BADGE -->
+                                                    <span class="status-badge status-available">Available</span>
+                                                </td>
+                                                <td>
+                                                    <div class="driver-actions">
+                                                        <!-- VIEW DRIVER BUTTON -->
+                                                        <button class="action-btn view-btn" data-driver="pedro-reyes" id="view-driver-pedro">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <!-- EDIT DRIVER BUTTON -->
+                                                        <button class="action-btn edit-btn" data-driver="pedro-reyes" id="edit-driver-pedro">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FLEET TAB CONTENT -->
+                    <div class="tab-content" id="fleet-content">
+                        <div class="fleet-management-section">
+                            
+                            <!-- SECTION HEADER -->
+                            <div class="section-header">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <h2 class="section-title">Fleet Management</h2>
+                                        <p class="section-subtitle">Monitor vehicle status</p>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <!-- ADD FLEET BUTTON -->
+                                        <button class="add-fleet-btn" id="add-fleet-btn">
+                                            <i class="fas fa-plus"></i>
+                                            <span>Add Fleet</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- FLEET TABLE -->
+                            <div class="fleet-table-container">
+                                <div class="table-responsive">
+                                    <table class="fleet-table table">
+                                        
+                                        <!-- TABLE HEADERS -->
+                                        <thead>
+                                            <tr>
+                                                <th>Vehicle</th>
+                                                <th>Driver</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <!-- TABLE BODY WITH FLEET ROWS -->
+                                        <tbody>
+                                            
+                                            <!-- FLEET ROW 1 - ABC-1234 -->
+                                            <tr class="fleet-row">
+                                                <td class="vehicle-id">ABC-1234</td>
+                                                <td class="driver-name">Juan Santos</td>
+                                                <td>
+                                                    <!-- IN USE STATUS BADGE -->
+                                                    <span class="status-badge status-in-use">In Use</span>
+                                                </td>
+                                                <td>
+                                                    <div class="fleet-actions">
+                                                        <!-- VIEW VEHICLE BUTTON -->
+                                                        <button class="action-btn view-btn" data-vehicle="abc-1234" id="view-vehicle-abc">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <!-- EDIT VEHICLE BUTTON -->
+                                                        <button class="action-btn edit-btn" data-vehicle="abc-1234" id="edit-vehicle-abc">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- FLEET ROW 2 - XYZ-5678 -->
+                                            <tr class="fleet-row">
+                                                <td class="vehicle-id">XYZ-5678</td>
+                                                <td class="driver-name">Maria Cruz</td>
+                                                <td>
+                                                    <!-- IN USE STATUS BADGE -->
+                                                    <span class="status-badge status-in-use">In Use</span>
+                                                </td>
+                                                <td>
+                                                    <div class="fleet-actions">
+                                                        <!-- VIEW VEHICLE BUTTON -->
+                                                        <button class="action-btn view-btn" data-vehicle="xyz-5678" id="view-vehicle-xyz">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <!-- EDIT VEHICLE BUTTON -->
+                                                        <button class="action-btn edit-btn" data-vehicle="xyz-5678" id="edit-vehicle-xyz">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- FLEET ROW 3 - DEF-9012 -->
+                                            <tr class="fleet-row">
+                                                <td class="vehicle-id">DEF-9012</td>
+                                                <td class="driver-name">Pedro Reyes</td>
+                                                <td>
+                                                    <!-- AVAILABLE STATUS BADGE -->
+                                                    <span class="status-badge status-available">Available</span>
+                                                </td>
+                                                <td>
+                                                    <div class="fleet-actions">
+                                                        <!-- VIEW VEHICLE BUTTON -->
+                                                        <button class="action-btn view-btn" data-vehicle="def-9012" id="view-vehicle-def">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <!-- EDIT VEHICLE BUTTON -->
+                                                        <button class="action-btn edit-btn" data-vehicle="def-9012" id="edit-vehicle-def">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </main>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==========================================
+         DELIVERY DETAILS MODAL POPUP
+    ========================================== -->
+    <div class="modal fade" id="deliveryDetailsModal" tabindex="-1" role="dialog" aria-labelledby="deliveryDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content delivery-details-modal">
+                
+                <!-- MODAL HEADER -->
+                <div class="modal-header delivery-details-header">
+                    <h2 class="modal-title delivery-details-title" id="deliveryDetailsModalLabel">Delivery Details</h2>
+                    <!-- CLOSE BUTTON -->
+                    <button type="button" class="close modal-close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <!-- MODAL BODY -->
+                <div class="modal-body delivery-details-body">
+                    
+                    <!-- DELIVERY DETAILS SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Delivery Details:</span>
+                        <span class="detail-value" id="modal-delivery-code">DEL-2025-001</span>
+                    </div>
+                    
+                    <!-- CUSTOMER SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Customer:</span>
+                        <span class="detail-value" id="modal-customer-name">Carla Mendoza</span>
+                    </div>
+                    
+                    <!-- ORDER ID SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Order ID:</span>
+                        <span class="detail-value" id="modal-order-id">ORD-2025-001234</span>
+                    </div>
+                    
+                    <!-- DRIVER SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Driver:</span>
+                        <span class="detail-value" id="modal-driver-name">Juan Santos</span>
+                    </div>
+                    
+                    <!-- VEHICLE DETAILS SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Delivery Details:</span>
+                        <span class="detail-value" id="modal-vehicle-info">Truck-001 (ABC-1234)</span>
+                    </div>
+                    
+                    <!-- DELIVERY ADDRESS SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Delivery Address:</span>
+                        <span class="detail-value" id="modal-delivery-address">Phase 1, Bagong Silang, Caloocan City</span>
+                    </div>
+                    
+                    <!-- DELIVERY ITEMS SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Delivery Details:</span>
+                        <span class="detail-value" id="modal-delivery-items">Cement (50kg) x20, Hollow Blocks x100</span>
+                    </div>
+                    
+                    <!-- DISTANCE SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Distance:</span>
+                        <span class="detail-value" id="modal-distance">8.5 km</span>
+                    </div>
+                    
+                    <!-- PROGRESS SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Progress:</span>
+                        <span class="detail-value progress-status" id="modal-progress-status">In Transit</span>
+                    </div>
+                    
+                </div>
+                
+                <!-- MODAL FOOTER -->
+                <div class="modal-footer delivery-details-footer">
+                    <!-- CLOSE BUTTON -->
+                    <button type="button" class="btn close-modal-btn" data-dismiss="modal">Close</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         DRIVER PROFILE MODAL POPUP
+    ========================================== -->
+    <div class="modal fade" id="driverProfileModal" tabindex="-1" role="dialog" aria-labelledby="driverProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content driver-profile-modal">
+                
+                <!-- MODAL HEADER -->
+                <div class="modal-header driver-profile-header">
+                    <h2 class="modal-title driver-profile-title" id="driverProfileModalLabel">Driver Profile</h2>
+                    <!-- CLOSE BUTTON -->
+                    <button type="button" class="close modal-close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <!-- MODAL BODY -->
+                <div class="modal-body driver-profile-body">
+                    
+                    <!-- DRIVER NAME SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Name:</span>
+                        <span class="detail-value" id="modal-driver-profile-name">Juan Santos</span>
+                    </div>
+                    
+                    <!-- PHONE NUMBER SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value" id="modal-driver-phone">+63 912 345 6789</span>
+                    </div>
+                    
+                    <!-- VEHICLE SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Vehicle:</span>
+                        <span class="detail-value" id="modal-driver-vehicle">Truck-001 (ABC-1234)</span>
+                    </div>
+                    
+                    <!-- CURRENT DELIVERY SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Current Delivery:</span>
+                        <span class="detail-value" id="modal-driver-delivery">DEL-2025-001</span>
+                    </div>
+                    
+                    <!-- LOCATION SECTION -->
+                    <div class="details-row">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value" id="modal-driver-location">Phase 1, Bagong Silang, Caloocan City</span>
+                    </div>
+                    
+                </div>
+                
+                <!-- MODAL FOOTER -->
+                <div class="modal-footer driver-profile-footer">
+                    <!-- CLOSE BUTTON -->
+                    <button type="button" class="btn close-modal-btn" data-dismiss="modal">Close</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JavaScript Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../Admin_assets/js/DeliveriesAdmin.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - MATARIX</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Customer_assets/css/Login.css">
+</head>
+
+<body>
+    <!-- Background Container with Same Pattern Image -->
+    <div class="background-container">
+        
+        <!-- Main Container with Two White Rectangles -->
+        <div class="login-container">
+            
+            <!-- Left White Rectangle - Form Section -->
+            <div class="left-rectangle">
+                
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <img src="../Admin_assets/images/logo.png" alt="Logo Icon" class="logo-icon">
+                </div>
+
+                <!-- Login Form -->
+                <form class="login-form">
+                    
+                    <!-- Username/Email Input Field with Icon -->
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="form-input" placeholder="Username or Email">
+                        </div>
+                    </div>
+
+                    <!-- Password Input Field with Icon -->
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" class="form-input" placeholder="Password">
+                        </div>
+                    </div>
+                    
+                    <!-- Forgot Password Link -->
+                    <div class="forgot-password-section">
+                        <a href="../Customer/ForgotPassword.html" class="forgot-password-link">Forgot Password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <a href="../Customer/MainPage.html">
+                        <button type="button" class="login-button">LOGIN</button>
+                    </a>
+
+                    <!-- Sign Up Link Section -->
+                    <div class="signup-link-section">
+                        <a href="../Customer/Registration.html" class="signup-link">Sign up for an account</a>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Right White Rectangle - Image Section -->
+            <div class="right-rectangle">
+                <!-- This section will be covered with your background image -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../Customer_assets/js/Login.js"></script>
+</body>
+</html>

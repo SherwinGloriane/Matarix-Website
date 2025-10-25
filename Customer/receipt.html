@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATARIX - Payment Receipt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="../Customer_assets/css/receipt.css" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER NAVIGATION -->
+    <nav class="navbar navbar-expand-lg matarix-header">
+        <div class="container-fluid">
+            <button class="navbar-toggler d-lg-none" type="button" id="sidebarToggle">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo" height="50" class="logo-img d-none d-md-inline">
+                <span class="d-md-none">MATARIX</span>
+            </a>
+            <div class="ml-auto header-icons">
+                <a href="#" class="navbar-icons" id="notificationIcon">
+                    <i class="fas fa-bell"></i>
+                </a>
+                <a href="./Cart.html" class="navbar-icons" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="./CustomerProfile.html" class="navbar-icons" id="userIcon">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR NAVIGATION -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-overlay d-lg-none" id="sidebarOverlay"></div>
+                <div class="sidebar-content">
+                    <a href="./MainPage.html" class="sidebar-item" id="materialsLink">
+                        <i class="fas fa-cubes"></i>Materials
+                    </a>
+                    <a href="./OrderSummary.html" class="sidebar-item" id="ordersLink">
+                        <i class="fas fa-box"></i>Orders
+                    </a>
+                    <a href="./DeliveryTracking.html" class="sidebar-item" id="deliveriesLink">
+                        <i class="fas fa-truck"></i>Deliveries
+                    </a>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT AREA -->
+            <div class="main-content">
+                <!-- RECEIPT HEADER -->
+                <div class="receipt-header-section">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="d-flex align-items-center">
+                            <button class="btn-back" id="smartBackBtn">
+                                <i class="fas fa-arrow-left"></i>
+                                <span id="backButtonText">Back to Orders</span>
+                            </button>
+                            <div class="header-text">
+                                <h1 class="page-title">Payment Receipt</h1>
+                                <p class="page-subtitle">Transaction details and payment confirmation</p>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-download" id="downloadReceiptBtn">
+                                <i class="fas fa-download"></i>
+                                <span>Download</span>
+                            </button>
+                            <button class="btn-print" id="printReceiptBtn">
+                                <i class="fas fa-print"></i>
+                                <span>Print</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECEIPT CONTAINER -->
+                <div class="receipt-wrapper">
+                    <!-- COMPANY HEADER -->
+                    <div class="company-header">
+                        <div class="company-left">
+                            <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo" class="company-logo">
+                            <div class="company-info">
+                                <h2 class="company-name">MATARIX Construction Supplies</h2>
+                                <p class="company-tagline">Official Payment rReceipt</p>
+                            </div>
+                        </div>
+                        <div class="company-right">
+                            <span class="payment-badge">
+                                <i class="fas fa-check-circle"></i>
+                                Payment Confirmed
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- TRANSACTION INFO SECTION -->
+                    <div class="info-section">
+                        <div class="info-column">
+                            <h3 class="info-heading">Transaction Information</h3>
+                            <div class="info-row">
+                                <span class="info-label">Order Number:</span>
+                                <span class="info-value">ORD-2025-001234</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Transaction ID:</span>
+                                <span class="info-value">GC789456123</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Reference Number:</span>
+                                <span class="info-value">GC789456123</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Payment Method:</span>
+                                <span class="info-value">GCash</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Account Number:</span>
+                                <span class="info-value">09123456789</span>
+                            </div>
+                        </div>
+
+                        <div class="info-column">
+                            <h3 class="info-heading">Payment Details</h3>
+                            <div class="info-row">
+                                <span class="info-label">Transaction Date:</span>
+                                <span class="info-value">June 3, 2025</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Transaction Time:</span>
+                                <span class="info-value">2:45 PM</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status:</span>
+                                <span class="info-value status-completed">COMPLETED</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Amount Paid:</span>
+                                <span class="info-value amount-paid">₱19,650</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CUSTOMER DETAILS -->
+                    <div class="customer-section">
+                        <h3 class="section-heading">Customer Details</h3>
+                        <div class="customer-content">
+                            <div class="customer-left">
+                                <p class="customer-name">Carla Mendoza</p>
+                                <p class="customer-phone">Phone Number: 09123456789</p>
+                            </div>
+                            <div class="customer-right">
+                                <p class="customer-address">Blk 12 Dagupan St, Camarín, Caloocan City</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ORDER ITEMS TABLE -->
+                    <div class="order-items-section">
+                        <h3 class="section-heading">Order Items</h3>
+                        <div class="table-responsive">
+                            <table class="items-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Variation</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-right">Unit Price</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hollow Block</td>
+                                        <td>390cm x 390cm</td>
+                                        <td class="text-center">300</td>
+                                        <td class="text-right">₱10.50</td>
+                                        <td class="text-right total-price">₱3,150</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mild Steel</td>
+                                        <td>6mm/built</td>
+                                        <td class="text-center">50</td>
+                                        <td class="text-right">₱320.00</td>
+                                        <td class="text-right total-price">₱16,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- PAYMENT SUMMARY -->
+                    <div class="payment-summary-section">
+                        <h3 class="section-heading">Payment Summary</h3>
+                        <div class="summary-box">
+                            <div class="summary-row">
+                                <span class="summary-label">Subtotal:</span>
+                                <span class="summary-value">₱19,150</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Payment Summary</span>
+                                <span class="summary-value total-amount">₱19,650</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RECEIPT FOOTER -->
+                    <div class="receipt-footer">
+                        <p class="thank-you">Thank you for your business!</p>
+                        <p class="footer-contact">
+                            For questions about this receipt, contact us at 
+                            <a href="mailto:support1@gmail.com">support1@gmail.com</a> or 
+                            <a href="tel:+6321234567">+63 2 1823 4567</a>
+                        </p>
+                        <p class="footer-tagline">MATARIX Construction Supplies - Building Your Dreams</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../Customer_assets/js/receipt.js"></script>
+</body>
+</html>

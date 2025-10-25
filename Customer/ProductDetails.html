@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Coco Lumber</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts - Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Customer_assets/css/ProductDetails.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="./MainPage.html">
+                    <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo">
+                </a>
+            </div>
+            <div class="search-box search-container">
+                <form onsubmit="return false;">
+                    <input type="text" class="search-input" placeholder="Search products...">
+                    <button type="button" class="search-btn"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="header-icons">
+                <a href="notifications.html" style="color: white; text-decoration: none;">
+                    <i class="far fa-bell"></i>
+                </a>
+                <a href="../Customer/Cart.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="./CustomerProfile.html" style="color: white; text-decoration: none;">
+                    <i class="far fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="landing.html"><i class="fas fa-cubes"></i> Materials</a></li>
+                <li><a href="order-summary.html"><i class="fas fa-box"></i> Orders</a></li>
+                <li><a href="delivery-tracking.html"><i class="fas fa-truck"></i> Deliveries</a></li>
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Product Detail Content -->
+            <div class="product-content">
+                <div class="row">
+                    <!-- Product Images Section -->
+                    <div class="col-4">
+                        <!-- Main Product Image -->
+                        <div class="main-product-image">
+                            <img src="../Customer_assets/images/PreviewMain.png" alt="Coco Lumber Main Image" class="img-fluid product-main-img">
+                        </div>
+                        
+                        <!-- Thumbnail Images -->
+                        <div class="thumbnail-images mt-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="../Customer_assets/images/prev1.png" alt="Thumbnail 1" class="img-fluid thumbnail-img">
+                                </div>
+                                <div class="col-6">
+                                    <img src="../Customer_assets/images/prev2.png" alt="Thumbnail 2" class="img-fluid thumbnail-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Information Section -->
+                    <div class="col-8">
+                        <!-- Product Title -->
+                        <h2 class="product-title">Coco Lumber (Coconut Wood)</h2>
+                        
+                        <!-- Product Rating -->
+                        <div class="product-rating mb-2">
+                            <span class="stars">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="rating-text">0.0 (0 reviews) | 0 Sold</span>
+                        </div>
+
+                        <!-- Product Price -->
+                        <div class="product-price mb-4">
+                            <span class="price">₱165.00</span>
+                        </div>
+
+                        <!-- Size Options -->
+                        <div class="size-options mb-4">
+                            <div class="row">
+                                <!-- Size Option 1: 2x2 x 8ft -->
+                                <div class="col-6 mb-2">
+                                    <button class="size-option-btn">
+                                        <div class="size-text">2x2 x 8ft</div>
+                                        <div class="price-text">₱165/piece</div>
+                                        <div class="stock-text">360 pieces available</div>
+                                    </button>
+                                </div>
+                                
+                                <!-- Size Option 2: 2x3 x 8ft -->
+                                <div class="col-6 mb-2">
+                                    <button class="size-option-btn">
+                                        <div class="size-text">2x3 x 8ft</div>
+                                        <div class="price-text">₱165/piece</div>
+                                        <div class="stock-text">360 pieces available</div>
+                                    </button>
+                                </div>
+                                
+                                <!-- Size Option 3: 2x4 x 8ft -->
+                                <div class="col-6 mb-2">
+                                    <button class="size-option-btn">
+                                        <div class="size-text">2x4 x 8ft</div>
+                                        <div class="price-text">₱165/piece</div>
+                                        <div class="stock-text">360 pieces available</div>
+                                    </button>
+                                </div>
+                                
+                                <!-- Size Option 4: 2x6 x 8ft -->
+                                <div class="col-6 mb-2">
+                                    <button class="size-option-btn">
+                                        <div class="size-text">2x6 x 8ft</div>
+                                        <div class="price-text">₱165/piece</div>
+                                        <div class="stock-text">360 pieces available</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Length Options -->
+                        <div class="length-options mb-4">
+                            <label class="option-label">Length Options:</label>
+                            <div class="length-buttons">
+                                <!-- 8ft Length Button -->
+                                <button class="length-btn active">8ft</button>
+                                
+                                <!-- 10ft Length Button -->
+                                <button class="length-btn">10ft</button>
+                                
+                                <!-- 12ft Length Button -->
+                                <button class="length-btn">12ft</button>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Section -->
+                        <div class="quantity-section mb-4">
+                            <label class="option-label">Quantity:</label>
+                            <div class="quantity-controls">
+                                <!-- Decrease Quantity Button -->
+                                <button class="quantity-btn">-</button>
+                                
+                                <!-- Quantity Input Field -->
+                                <input type="number" class="quantity-input" value="1" min="1">
+                                
+                                <!-- Increase Quantity Button -->
+                                <button class="quantity-btn">+</button>
+                                
+                                <span class="stock-available">520 stocks available</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons mb-4">
+                            <!-- Add to Cart Button -->
+                            <a href="../Customer/Cart.html" class="btn btn-add-cart">Add to Cart</a>
+                            
+                            <!-- Buy Now Button -->
+                        </div>
+
+                        <!-- Tab Navigation and Content Container -->
+                        <div class="product-tabs-container">
+                            <!-- Tab Navigation -->
+                            <ul class="nav nav-tabs custom-tabs" role="tablist">
+                                <!-- Description Tab -->
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+                                </li>
+                                
+                                <!-- Specifications Tab -->
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#specifications">Specifications</a>
+                                </li>
+                                
+                                <!-- Reviews Tab -->
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#reviews">Reviews ( 0 )</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab Content Container -->
+                            <div class="tab-content-container">
+                                <div class="tab-content">
+                                    <!-- Description Tab Content -->
+                                    <div class="tab-pane fade show active" id="description">
+                                        <div class="description-content">
+                                            <h5>Product Description</h5>
+                                            <p>Coco Lumber, also known as coconut wood or coconut palm lumber, is an innovative and sustainable building material made from coconut palm trees. This eco-friendly alternative to traditional hardwood offers excellent strength, durability, and workability for various construction and carpentry applications.</p>
+                                            
+                                            <p>Our coco lumber is sourced from mature coconut palms that have reached the end of their productive life cycle, making it a truly sustainable choice. The wood is properly seasoned, treated, and graded to ensure consistent quality and performance in construction applications.</p>
+
+                                            <h6>Key Features:</h6>
+                                            <ul>
+                                                <li>100% sustainable and renewable resource</li>
+                                                <li>High strength-to-weight ratio</li>
+                                                <li>Excellent workability and machinability</li>
+                                                <li>Natural resistance to pests and decay</li>
+                                                <li>Consistent grain pattern and density</li>
+                                                <li>Kiln-dried to optimal moisture content (12-15%)</li>
+                                                <li>Treated for enhanced durability</li>
+                                            </ul>
+
+                                            <h6>Applications:</h6>
+                                            <ul>
+                                                <li>Structural framing and construction</li>
+                                                <li>Concrete formwork and scaffolding</li>
+                                                <li>Furniture making and cabinetry</li>
+                                                <li>Flooring and decking applications</li>
+                                                <li>Interior and exterior trim work</li>
+                                                <li>Custom millwork and architectural elements</li>
+                                                <li>Temporary construction structures</li>
+                                            </ul>
+
+                                            <h6>Quality Assurance</h6>
+                                            <p>Each piece of coco lumber undergoes rigorous quality control including moisture content testing, strength grading, and visual inspection. Our lumber meets Philippine National Standards for structural applications and is suitable for both indoor and outdoor use when properly maintained.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Specifications Tab Content -->
+                                    <div class="tab-pane fade" id="specifications">
+                                        <div class="specifications-content">
+                                            <p>Specifications content will be loaded here...</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Reviews Tab Content -->
+                                    <div class="tab-pane fade" id="reviews">
+                                        <div class="reviews-content">
+                                            <p>No reviews yet. Be the first to review this product!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback & Reviews - MATARIX</title>
+    
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS File -->
+       <!-- Link to External CSS File -->
+    <link rel="stylesheet" href="../Admin_assets/css/CustomerFeedback.css">
+<body>
+
+    <!-- ==========================================
+         MAIN HEADER SECTION
+    ========================================== -->
+     <!-- MAIN HEADER SECTION -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                
+                <!-- LEFT SECTION: MATARIX Logo -->
+                <div class="col-md-4">
+                    <div class="logo-container">
+                        <!-- MATARIX LOGO IMAGE -->
+                        <img src="../Admin_assets/images/logo.png" alt="MATARIX Logo" class="logo-image">
+                    </div>
+                </div>
+                
+                <!-- CENTER SECTION: Empty (Search removed) -->
+                <div class="col-md-4"></div>
+                
+                <!-- RIGHT SECTION: Header Action Icons -->
+                <div class="col-md-4">
+                    <div class="header-actions">
+                        <!-- EMAIL/MESSAGES ICON BUTTON -->
+                        <button class="header-action-btn" id="messages-btn">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+
+                        <!-- USER PROFILE ICON BUTTON -->
+                        <button class="header-action-btn" id="profile-btn">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN LAYOUT CONTAINER
+    ========================================== -->
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!-- ==========================================
+                     LEFT SIDEBAR NAVIGATION - DEFAULT FOR ALL ADMIN PAGES
+                ========================================== -->
+                <aside class="col-md-2 sidebar-container">
+                    <nav class="sidebar-nav">
+                        
+                        <!-- SIDEBAR NAVIGATION LINKS -->
+                        <ul class="nav-links">
+                            <!-- ORDERS NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/OrdersAdmin.html" class="nav-link" id="orders-nav">
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            
+                            <!-- INVENTORY NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/InventoryAdmin.html" class="nav-link" id="inventory-nav">
+                                    <span>Inventory</span>
+                                </a>
+                            </li>
+                            
+                            <!-- DELIVERIES NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/DeliveriesAdmin.html" class="nav-link" id="deliveries-nav">
+                                    <span>Deliveries</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ANALYTICS NAVIGATION LINK (ACTIVE) -->
+                            <li>
+                                <a href="../Admin/ReportsAdmin.html" class="nav-link active" id="analytics-nav">
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            
+                            <!-- USER MANAGEMENT NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/UserManagement.html" class="nav-link" id="user-management-nav">
+                                    <span>User Management</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ABOUT US NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/AboutUs.html" class="nav-link" id="about-nav">
+                                    <span>About us</span>
+                                </a>
+                            </li>
+                        </ul>     
+                    </nav>
+                    
+                    <!-- SIDEBAR FOOTER WITH LOGOUT BUTTON -->
+                    <div class="sidebar-footer">
+                        <!-- LOGOUT BUTTON -->
+                        <button class="logout-button" onclick="window.location.href='../Admin/AdminLogin.html'">Logout</button>
+                    </div>
+                </aside>
+
+                <!-- ==========================================
+                     MAIN CONTENT AREA
+                ========================================== -->
+                <main class="col-md-10 main-content">
+                    
+                    <!-- PAGE HEADER WITH TITLE AND FILTERS -->
+                    <div class="content-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <!-- PAGE TITLE -->
+                                <h1 class="page-title">Customer Feedback & Reviews</h1>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="filter-controls">
+                                    <!-- ALL RATINGS FILTER DROPDOWN -->
+                                    <select class="filter-dropdown" id="ratings-filter">
+                                        <option value="">All Ratings</option>
+                                        <option value="5">5 Stars</option>
+                                        <option value="4">4 Stars</option>
+                                        <option value="3">3 Stars</option>
+                                        <option value="2">2 Stars</option>
+                                        <option value="1">1 Star</option>
+                                    </select>
+                                    
+                                    <!-- ALL TIME FILTER DROPDOWN -->
+                                    <select class="filter-dropdown" id="time-filter">
+                                        <option value="">All Time</option>
+                                        <option value="week">This Week</option>
+                                        <option value="month">This Month</option>
+                                        <option value="year">This Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         FEEDBACK STATISTICS CARDS
+                    ========================================== -->
+                    <div class="feedback-stats">
+                        <div class="row">
+                            
+                            <!-- AVERAGE RATING STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <h4>Average Rating</h4>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">5</div>
+                                        <div class="star-rating">
+                                            <!-- STAR RATING DISPLAY -->
+                                            <i class="fas fa-star filled-star"></i>
+                                            <i class="fas fa-star filled-star"></i>
+                                            <i class="fas fa-star filled-star"></i>
+                                            <i class="fas fa-star filled-star"></i>
+                                            <i class="fas fa-star filled-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- TOTAL REVIEWS STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <h4>Total Reviews</h4>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">500</div>
+                                        <div class="stat-subtitle">Total Reviews</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- SATISFACTION RATE STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <h4>Satisfaction Rate</h4>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-subtitle">Customer Satisfaction</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         CUSTOMER REVIEWS SECTION
+                    ========================================== -->
+                    <div class="reviews-section">
+                        
+                        <!-- REVIEW CARD 1 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="customer-info">
+                                    <!-- CUSTOMER ICON -->
+                                    <div class="customer-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="customer-details">
+                                        <h4 class="customer-name">Mario Santos</h4>
+                                        <div class="review-meta">
+                                            <span class="product-name">Hollow Blocks</span>
+                                            <span class="order-id">Order #ORD-2025-001</span>
+                                            <span class="review-date">January 15, 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <!-- STAR RATING FOR REVIEW -->
+                                    <div class="stars">
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                    </div>
+                                    <span class="rating-number">5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-body">
+                                <div class="product-details">
+                                    <span class="product-spec">Name: CHB 6x8x12cm</span>
+                                    <span class="product-price">Price: ₱350</span>
+                                    <span class="product-quantity">Quantity: 2400</span>
+                                </div>
+                                <div class="review-text">
+                                    <p>Excellent quality! Hollow blocks are definitely good! I ordered it perfect and the delivery was on time. The blocks were well packaged and arrived without any damage. Will definitely order again for my next construction project. Highly recommend!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- REVIEW CARD 2 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="customer-info">
+                                    <!-- CUSTOMER ICON -->
+                                    <div class="customer-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="customer-details">
+                                        <h4 class="customer-name">Roberto Cruz</h4>
+                                        <div class="review-meta">
+                                            <span class="product-name">Stanley Hammer</span>
+                                            <span class="order-id">Order #ORD-2025-004</span>
+                                            <span class="review-date">March 25, 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <!-- STAR RATING FOR REVIEW -->
+                                    <div class="stars">
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                    </div>
+                                    <span class="rating-number">5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-body">
+                                <div class="product-details">
+                                    <span class="product-spec">Variation: Tool</span>
+                                    <span class="product-price">Price: ₱350</span>
+                                    <span class="product-quantity">Quantity: 3x</span>
+                                </div>
+                                <div class="review-text">
+                                    <p>Outstanding quality hammer! Very well balanced and comfortable grip. Perfect for my construction work. Fast delivery and excellent customer service. MATARIX is now my go-to supplier for tools!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- REVIEW CARD 3 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="customer-info">
+                                    <!-- CUSTOMER ICON -->
+                                    <div class="customer-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="customer-details">
+                                        <h4 class="customer-name">Maria Garcia</h4>
+                                        <div class="review-meta">
+                                            <span class="product-name">Cement Bags</span>
+                                            <span class="order-id">Order #ORD-2025-007</span>
+                                            <span class="review-date">April 10, 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <!-- STAR RATING FOR REVIEW -->
+                                    <div class="stars">
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                        <i class="fas fa-star filled-star"></i>
+                                    </div>
+                                    <span class="rating-number">5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-body">
+                                <div class="product-details">
+                                    <span class="product-spec">Type: Portland Cement</span>
+                                    <span class="product-price">Price: ₱220</span>
+                                    <span class="product-quantity">Quantity: 50 bags</span>
+                                </div>
+                                <div class="review-text">
+                                    <p>Great quality cement! Consistent mixing and excellent results for our foundation work. Delivery was prompt and professional. The bags were well-handled and none were damaged. Highly satisfied with the service!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JavaScript Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Link to External JavaScript File -->
+    <script src="../Admin_assets/js/CustomerFeedback.js"></script>
+    
+</body>
+</html>

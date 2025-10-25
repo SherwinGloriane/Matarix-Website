@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - MATARIX</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Customer_assets/css/Registration.css">
+</head>
+<body>
+    <!-- Background Container with Pattern Image -->
+    <div class="background-container">
+        
+        <!-- Registration Form Container -->
+        <div class="registration-container">
+            
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="../Customer_assets/images/MATARIX_logo.png" alt="Logo" class="logo-img">
+            </div>
+
+            <!-- Form Title -->
+            <h1 class="form-title">REGISTRATION</h1>
+
+            <!-- Registration Form -->
+            <form class="registration-form">
+                
+                <!-- First Row: Email (Full Width) -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="Enter your Email">
+                    </div>
+                </div>
+
+                <!-- Second Row: First Name and Last Name -->
+                <div class="form-row row">
+                    <div class="col-md-6">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your first name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your last name">
+                    </div>
+                </div>
+
+                <!-- Third Row: Middle Name and Mobile Number -->
+                <div class="form-row row">
+                    <div class="col-md-6">
+                        <label class="form-label">Middle Name (Optional)</label>
+                        <input type="text" class="form-input" placeholder="Enter your middle name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="tel" class="form-input" placeholder="Enter your mobile number">
+                    </div>
+                </div>
+
+                <!-- Fourth Row: Password and Confirm Password -->
+                <div class="form-row row">
+                    <div class="col-md-6">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="Enter your password">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" placeholder="Confirm Password">
+                    </div>
+                </div>
+
+                <!-- Fifth Row: Address (Full Width) -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-input" placeholder="Enter your complete address">
+                    </div>
+                </div>
+                
+                <!-- Sign Up Button -->
+                <a href="../Customer/TermsOfService.html">
+                    <button type="button" class="signup-button">Sign Up</button>
+                </a>  
+                
+                <!-- Login Link Section -->
+                <div class="login-link-section">
+                    <span class="login-text">Already have an Account? </span>
+                    <a href="../Customer/Registration.html" class="login-link">Login</a>
+                </div>
+
+                <!-- Terms of Service Link Section -->
+                <div class="terms-link-section">
+                    <a href="../Customer/TermsOfService.html" class="terms-link">Terms of Service</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../Customer_assets/js/Registration.js"></script>
+</body>
+</html>

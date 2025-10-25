@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATARIX - Checkout</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../Customer_assets/css/checkout.css" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER NAVIGATION -->
+    <nav class="navbar navbar-expand-lg matarix-header">
+        <div class="container-fluid">
+            <button class="navbar-toggler d-lg-none" type="button" id="sidebarToggle">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo" height="50" class="logo-img d-none d-md-inline">
+                <span class="d-md-none">MATARIX</span>
+            </a>
+            
+            <div class="search-container d-none d-lg-block">
+                <input type="text" class="form-control search-input" placeholder="Search products...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="ml-auto header-icons">
+                <a href="#" class="navbar-icons">
+                    <i class="fas fa-bell"></i>
+                </a>
+                <a href="./Cart.html" class="navbar-icons">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="./CustomerProfile.html" class="navbar-icons">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR NAVIGATION -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-content">
+                    <a href="../Customer/MainPage.html" class="sidebar-item">
+                        <i class="fas fa-cubes"></i>Materials
+                    </a>
+                    <a href="./OrderSummary.html" class="sidebar-item active">
+                        <i class="fas fa-box"></i>Orders
+                    </a>
+                    <a href="./delivery-tracking.html" class="sidebar-item">
+                        <i class="fas fa-truck"></i>Deliveries
+                    </a>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT AREA -->
+            <div class="main-content">
+                <h1 class="checkout-title">Checkout</h1>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- DELIVERY INFORMATION -->
+                        <div class="card matarix-card">
+                            <div class="matarix-card-header">
+                                <h5><i class="fas fa-truck mr-2"></i>Delivery Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="delivery-info">
+                                        <p class="customer-name">Carla Mendoza</p>
+                                        <p class="customer-address">Blk 2 Chavez St. Dalmen Subdivision City</p>
+                                        <p class="customer-phone"><i class="fas fa-phone mr-2"></i>09xxxxxxx</p>
+                                    </div>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-edit mr-1"></i>Edit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ORDER ITEMS -->
+                        <div class="card matarix-card">
+                            <div class="matarix-card-header">
+                                <h5><i class="fas fa-list mr-2"></i>Order Items</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="text-center">Price</th>
+                                                <th class="text-center">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="bg-light rounded p-2 mr-3" style="width: 50px; height: 50px;"></div>
+                                                        <div>
+                                                            <h6 class="mb-0">Hollow Block</h6>
+                                                            <small class="text-muted">39cm x 39cm</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">300</td>
+                                                <td class="text-center">₱90.50</td>
+                                                <td class="text-center font-weight-bold">₱27,150</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="bg-light rounded p-2 mr-3" style="width: 50px; height: 50px;"></div>
+                                                        <div>
+                                                            <h6 class="mb-0">Mild Steel</h6>
+                                                            <small class="text-muted">6mm x 6m</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">₱300</td>
+                                                <td class="text-center font-weight-bold">₱15,000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <!-- ORDER SUMMARY -->
+                        <div class="order-summary">
+                            <h4 class="summary-title">Order Summary</h4>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Subtotal:</span>
+                                <span class="summary-value">₱42,150</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Delivery Fee:</span>
+                                <span class="summary-value">₱650</span>
+                            </div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Total:</span>
+                                <span class="summary-value">₱42,800</span>
+                            </div>
+                            
+                            <button class="btn btn-matarix mt-4" id="proceedToPayment">
+                                <i class="fas fa-credit-card mr-2"></i>Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT METHOD SELECTION POPUP -->
+    <div class="popup-overlay" id="paymentMethodPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h4 class="popup-title">Select Payment Method</h4>
+                <button class="popup-close" onclick="closePaymentMethodPopup()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="popup-body">
+                <div class="payment-methods">
+                    <!-- ONSITE PAYMENT OPTION -->
+                    <div class="payment-method-option" data-method="onsite">
+                        <div class="payment-icon onsite">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="payment-details">
+                            <h6>Pay On-Site</h6>
+                            <p>Pay at the physical store</p>
+                        </div>
+                    </div>
+                    
+                    <!-- GCASH PAYMENT OPTION -->
+                    <div class="payment-method-option" data-method="gcash">
+                        <div class="payment-icon gcash">
+                            <i class="fab fa-google-pay"></i>
+                        </div>
+                        <div class="payment-details">
+                            <h6>GCash Payment</h6>
+                            <p>Pay instantly using your GCash mobile wallet</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-matarix mt-4" id="confirmPaymentMethod" disabled>
+                    <i class="fas fa-arrow-right mr-2"></i>Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR CODE PAYMENT POPUP -->
+    <div class="popup-overlay" id="qrPaymentPopup">
+        <div class="popup-content qr-popup-content">
+            <div class="popup-header">
+                <h4 class="popup-title">Scan to Pay</h4>
+                <button class="popup-close" onclick="closeQRPaymentPopup()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="popup-body">
+                <div class="qr-code-container">
+                    <div class="qr-code">
+                        <!-- QR Code placeholder - replace with actual QR code generator -->
+                        <svg width="200" height="200" viewBox="0 0 200 200">
+                            <rect width="200" height="200" fill="white"/>
+                            <!-- Simple QR code pattern -->
+                            <g fill="black">
+                                <rect x="10" y="10" width="60" height="60"/>
+                                <rect x="130" y="10" width="60" height="60"/>
+                                <rect x="10" y="130" width="60" height="60"/>
+                                <rect x="20" y="20" width="40" height="40" fill="white"/>
+                                <rect x="140" y="20" width="40" height="40" fill="white"/>
+                                <rect x="20" y="140" width="40" height="40" fill="white"/>
+                                <rect x="30" y="30" width="20" height="20"/>
+                                <rect x="150" y="30" width="20" height="20"/>
+                                <rect x="30" y="150" width="20" height="20"/>
+                                <!-- Pattern dots -->
+                                <rect x="90" y="30" width="20" height="10"/>
+                                <rect x="90" y="50" width="10" height="20"/>
+                                <rect x="110" y="70" width="10" height="10"/>
+                                <rect x="130" y="90" width="10" height="20"/>
+                                <rect x="90" y="110" width="20" height="10"/>
+                                <rect x="110" y="130" width="10" height="10"/>
+                                <rect x="50" y="90" width="30" height="10"/>
+                                <rect x="30" y="110" width="10" height="10"/>
+                                <rect x="70" y="130" width="10" height="30"/>
+                                <rect x="90" y="150" width="10" height="10"/>
+                                <rect x="110" y="170" width="20" height="10"/>
+                                <rect x="150" y="150" width="10" height="30"/>
+                                <rect x="170" y="130" width="10" height="10"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="qr-amount">₱42,800.00</div>
+                    <p class="qr-instructions">
+                        Open your GCash app and scan this QR code to complete your payment.
+                    </p>
+                </div>
+                
+                <button class="btn upload-receipt-btn">
+                    <i class="fas fa-upload mr-2"></i>Upload Receipt
+                </button>
+                
+                <p class="text-muted small mt-3">
+                    After payment, please upload your receipt to confirm the transaction.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let selectedPaymentMethod = null;
+
+        // SIDEBAR TOGGLE
+        $('#sidebarToggle').click(function() {
+            $('#sidebar').toggleClass('show');
+        });
+
+        // PROCEED TO PAYMENT BUTTON
+        $('#proceedToPayment').click(function() {
+            $('#paymentMethodPopup').addClass('show');
+            $('body').css('overflow', 'hidden');
+        });
+
+        // PAYMENT METHOD SELECTION
+        $('.payment-method-option').click(function() {
+            $('.payment-method-option').removeClass('selected');
+            $(this).addClass('selected');
+            selectedPaymentMethod = $(this).data('method');
+            $('#confirmPaymentMethod').prop('disabled', false);
+        });
+
+        // CONFIRM PAYMENT METHOD
+        $('#confirmPaymentMethod').click(function() {
+            if (selectedPaymentMethod === 'gcash') {
+                // Close payment method popup and show QR code popup
+                $('#paymentMethodPopup').removeClass('show');
+                setTimeout(() => {
+                    $('#qrPaymentPopup').addClass('show');
+                }, 300);
+            } else if (selectedPaymentMethod === 'onsite') {
+                // Handle onsite payment
+                closePaymentMethodPopup();
+                alert('Order confirmed! You can pay when your order is delivered.');
+                // Redirect to order confirmation or receipt page
+                // window.location.href = 'order-confirmation.html';
+            }
+        });
+
+        // CLOSE PAYMENT METHOD POPUP
+        function closePaymentMethodPopup() {
+            $('#paymentMethodPopup').removeClass('show');
+            $('body').css('overflow', 'auto');
+            selectedPaymentMethod = null;
+            $('.payment-method-option').removeClass('selected');
+            $('#confirmPaymentMethod').prop('disabled', true);
+        }
+
+        // CLOSE QR PAYMENT POPUP
+        function closeQRPaymentPopup() {
+            $('#qrPaymentPopup').removeClass('show');
+            $('body').css('overflow', 'auto');
+        }
+
+        // CLOSE POPUPS ON OVERLAY CLICK
+        $('.popup-overlay').click(function(e) {
+            if (e.target === this) {
+                $(this).removeClass('show');
+                $('body').css('overflow', 'auto');
+                if (this.id === 'paymentMethodPopup') {
+                    selectedPaymentMethod = null;
+                    $('.payment-method-option').removeClass('selected');
+                    $('#confirmPaymentMethod').prop('disabled', true);
+                }
+            }
+        });
+
+        // UPLOAD RECEIPT FUNCTIONALITY
+        $('.upload-receipt-btn').click(function() {
+            // Create file input dynamically
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.style.display = 'none';
+            
+            fileInput.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Handle file upload here
+                    alert('Receipt uploaded successfully! Your payment is being processed.');
+                    closeQRPaymentPopup();
+                    // Redirect to order confirmation or receipt page
+                    // window.location.href = 'payment-receipt.html';
+                }
+            };
+            
+            document.body.appendChild(fileInput);
+            fileInput.click();
+            document.body.removeChild(fileInput);
+        });
+
+        // KEYBOARD NAVIGATION
+        $(document).keydown(function(e) {
+            // Close popup on Escape key
+            if (e.key === 'Escape') {
+                if ($('#qrPaymentPopup').hasClass('show')) {
+                    closeQRPaymentPopup();
+                } else if ($('#paymentMethodPopup').hasClass('show')) {
+                    closePaymentMethodPopup();
+                }
+            }
+        });
+
+        // PREVENT POPUP CONTENT CLICKS FROM CLOSING POPUP
+        $('.popup-content').click(function(e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>

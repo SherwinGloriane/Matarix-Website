@@ -1,0 +1,587 @@
+/* ==========================================
+   MATARIX ADMIN DASHBOARD STYLES
+   File: reports-admin.css
+========================================== */
+
+/* ==========================================
+   1. GLOBAL STYLES
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* ==========================================
+   2. MAIN HEADER STYLES - DEFAULT FOR ALL ADMIN PAGES
+========================================== */
+
+/* Main Header Container */
+.main-header {
+    background-color: #444444;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* MATARIX Logo Image */
+.logo-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Header Actions Container */
+.header-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Header Action Buttons */
+.header-action-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.header-action-btn:hover {
+    background-color: rgba(255,255,255,0.1);
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   3. SIDEBAR NAVIGATION STYLES - DEFAULT FOR ALL ADMIN PAGES
+========================================== */
+
+/* Main Layout Container */
+.main-layout {
+    min-height: calc(100vh - 80px);
+}
+
+/* Sidebar Container */
+.sidebar-container {
+    background-color: #940909;
+    padding: 0;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+}
+
+/* Navigation Links Container */
+.nav-links {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+}
+
+.nav-links li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Navigation Link Styles */
+.nav-link {
+    display: block;
+    padding: 30px 25px;
+    color: #e2e8f0;
+    border-bottom: 0.5px solid #4a5568;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    text-decoration: none;
+    padding-left: 30px;
+}
+
+/* Active Navigation Link */
+.nav-link.active {
+    background-color: rgba(255,255,255,0.2);
+    font-weight: 600;
+    border-left: 4px solid white;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+}
+
+/* Logout Button */
+.logout-button {
+    width: 100%;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* ==========================================
+   4. MAIN CONTENT STYLES
+========================================== */
+
+/* Main Content Container */
+.main-content {
+    background-color: #ffffff;
+    min-height: calc(100vh - 110px);
+    padding: 30px;
+}
+
+/* ==========================================
+   5. SALES AND ANALYTICS STYLES
+========================================== */
+
+/* Analytics Header */
+.analytics-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.analytics-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.feedback-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feedback-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Analytics Statistics Cards */
+.analytics-stats {
+    margin-bottom: 40px;
+}
+
+.analytics-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.analytics-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.card-header {
+    margin-bottom: 15px;
+}
+
+.card-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 4px 0;
+}
+
+.card-sublabel {
+    font-size: 12px;
+    color: #6c757d;
+    margin: 0;
+}
+
+.card-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.card-change {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card-change.positive {
+    color: #28a745;
+}
+
+.card-change.negative {
+    color: #dc3545;
+}
+
+/* Products Analytics Section */
+.products-analytics-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.products-header {
+    padding: 25px 30px 20px 30px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.products-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.products-filters {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.products-filters .filter-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    color: #6c757d;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.products-filters .filter-btn.active {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.products-filters .filter-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.products-filters .filter-btn.active:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+/* Products Analytics Table */
+.products-table-container {
+    padding: 0;
+}
+
+.products-analytics-table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+.products-analytics-table thead th {
+    background-color: #f8f9fa;
+    border-top: none;
+    border-bottom: 2px solid #e9ecef;
+    padding: 18px 25px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.products-analytics-table tbody td {
+    padding: 20px 25px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.product-analytics-row {
+    transition: background-color 0.2s ease;
+}
+
+.product-analytics-row:hover {
+    background-color: #f8f9fa;
+}
+
+.product-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.revenue-amount {
+    font-weight: 600;
+    color: #2c3e50;
+    font-family: 'Courier New', monospace;
+}
+
+.units-sold {
+    color: #495057;
+    font-weight: 500;
+}
+
+.growth-percentage {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.growth-percentage.positive {
+    color: #28a745;
+}
+
+.growth-percentage.negative {
+    color: #dc3545;
+}
+
+.details-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    color: #495057;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.details-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #2c3e50;
+}
+
+.details-btn i {
+    font-size: 11px;
+}
+
+/* Report Actions */
+.report-actions {
+    padding: 25px 30px;
+    border-top: 1px solid #f1f3f4;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.export-report-btn, .generate-report-btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.export-report-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.export-report-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+.generate-report-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.generate-report-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   6. RESPONSIVE DESIGN
+========================================== */
+
+/* Tablet Styles */
+@media (max-width: 992px) {
+    .main-content {
+        padding: 20px;
+    }
+    
+    .analytics-title {
+        font-size: 28px;
+    }
+    
+    .analytics-header .row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .analytics-card {
+        margin-bottom: 20px;
+    }
+    
+    .products-header .row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .products-filters {
+        justify-content: flex-start;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .sidebar-container {
+        position: fixed;
+        left: -250px;
+        top: 110px;
+        height: calc(100vh - 110px);
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .sidebar-container.active {
+        left: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+    
+    .analytics-title {
+        font-size: 24px;
+    }
+    
+    .analytics-card {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+    
+    .card-value {
+        font-size: 24px;
+    }
+    
+    .products-analytics-table {
+        font-size: 12px;
+        min-width: 600px;
+    }
+    
+    .products-table-container {
+        overflow-x: auto;
+    }
+    
+    .products-analytics-table thead th,
+    .products-analytics-table tbody td {
+        padding: 12px 8px;
+    }
+    
+    .report-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .export-report-btn, .generate-report-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 576px) {
+    .logo-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .header-action-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .nav-link {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    .analytics-title {
+        font-size: 20px;
+    }
+    
+    .analytics-card {
+        padding: 15px;
+    }
+    
+    .card-value {
+        font-size: 20px;
+    }
+    
+    .products-title {
+        font-size: 18px;
+    }
+    
+    .products-filters {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .products-filters .filter-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

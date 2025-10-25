@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Order Details - MATARIX</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Admin_assets/css/ViewOrderPageAdmin.css">
+</head>
+<body>
+     <!-- MAIN HEADER SECTION -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                
+                <!-- LEFT SECTION: MATARIX Logo -->
+                <div class="col-md-4">
+                    <div class="logo-container">
+                        <!-- MATARIX LOGO IMAGE -->
+                        <img src="../Admin_assets/images/logo.png" alt="MATARIX Logo" class="logo-image">
+                    </div>
+                </div>
+                
+                <!-- CENTER SECTION: Empty (Search removed) -->
+                <div class="col-md-4"></div>
+                
+                <!-- RIGHT SECTION: Header Action Icons -->
+                <div class="col-md-4">
+                    <div class="header-actions">
+                        <!-- EMAIL/MESSAGES ICON BUTTON -->
+                        <button class="header-action-btn" id="messages-btn">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+
+                        <!-- USER PROFILE ICON BUTTON -->
+                        <button class="header-action-btn" id="profile-btn">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN LAYOUT CONTAINER -->
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!-- LEFT SIDEBAR NAVIGATION -->
+                <aside class="col-md-2 sidebar-container">
+                    <nav class="sidebar-nav">
+                        
+                        <!-- SIDEBAR NAVIGATION LINKS -->
+                        <ul class="nav-links">
+                            <!-- ORDERS NAVIGATION LINK (ACTIVE) -->
+                            <li>
+                                <a href="../Admin/OrdersAdmin.html" class="nav-link active" id="orders-nav">
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            
+                            <!-- INVENTORY NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/InventoryAdmin.html" class="nav-link" id="inventory-nav">
+                                    <span>Inventory</span>
+                                </a>
+                            </li>
+                            
+                            <!-- DELIVERIES NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/DeliveriesAdmin.html" class="nav-link" id="deliveries-nav">
+                                    <span>Deliveries</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ANALYTICS NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/ReportsAdmin.html" class="nav-link" id="analytics-nav">
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            
+                            <!-- USER MANAGEMENT NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/UserManagement.html" class="nav-link" id="user-management-nav">
+                                    <span>User Management</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ABOUT US NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/AboutUs.html" class="nav-link" id="about-nav">
+                                    <span>About us</span>
+                                </a>
+                            </li>
+                        </ul>     
+                    </nav>
+                    
+                    <!-- SIDEBAR FOOTER WITH LOGOUT BUTTON -->
+                    <div class="sidebar-footer">
+                        <button class="logout-button" onclick="window.location.href='../Admin/AdminLogin.html'">Logout</button>
+                    </div>
+                </aside>
+
+                <!-- ORDER DETAILS CONTENT SECTION -->
+                <div class="col-md-10 order-details-content">
+                    
+                    <!-- Customer Information Header -->
+                    <div class="customer-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <!-- CUSTOMER NAME -->
+                                   <h2 class="customer-name">
+                                    Carla Mendoza 
+                                    <button class="view-profile-btn" id="view-profile-btn">View Profile</button>
+                                </h2>
+                                <!-- CUSTOMER ADDRESS -->
+                                <p class="customer-address">Blk 12 Dagupan St, Camarin, Caloocan City</p>
+                                <!-- CUSTOMER PHONE -->
+                                <p class="customer-phone">09123456789</p>
+                            </div>
+                            <div class="col-md-4 text-right">
+
+                                <!-- ESTIMATED DELIVERY INFO -->
+                                <div class="delivery-info">
+                                    <span class="delivery-label">Estimated Delivery:</span>
+                                    <div class="delivery-date">June 5, 2025</div>
+                                    <div class="delivery-time">10:00 AM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Items Table -->
+                    <div class="order-items-container">
+                        
+                        <!-- ORDER ITEMS TABLE -->
+                        <div class="table-responsive">
+                            <table class="table order-items-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Variation</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ORDER ITEM 1 - HOLLOW BLOCK -->
+                                    <tr>
+                                        <td>
+                                            <div class="product-info">
+                                                <!-- PRODUCT IMAGE -->
+                                                <img src="C:\Users\TUF GAMING\OneDrive\Desktop\MATARIX Website UI\MATARIX styles\HollowBlock.png" alt="Hollow Block" class="product-image">
+                                                <span class="product-name">Hollow Block</span>
+                                            </div>
+                                        </td>
+                                        <td class="quantity">300</td>
+                                        <td class="variation">190cm x 390cm</td>
+                                        <td class="price">₱10.50</td>
+                                        <td class="total">₱3,150.00</td>
+                                    </tr>
+
+                                    <!-- ORDER ITEM 2 - MILD STEEL -->
+                                    <tr>
+                                        <td>
+                                            <div class="product-info">
+                                                <!-- PRODUCT IMAGE -->
+                                                <img src="C:\Users\TUF GAMING\OneDrive\Desktop\MATARIX Website UI\MATARIX styles\MildSteel.png" alt="Mild Steel" class="product-image">
+                                                <span class="product-name">Mild Steel</span>
+                                            </div>
+                                        </td>
+                                        <td class="quantity">50</td>
+                                        <td class="variation">6mm×4ft×8ft</td>
+                                        <td class="price">₱320</td>
+                                        <td class="total">₱16,000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- ORDER TOTAL -->
+                        <div class="order-total-section">
+                            <div class="total-amount">₱19,150.00</div>
+                        </div>
+                    </div>
+
+                    <!-- Payment and Action Buttons Section -->
+                    <div class="payment-actions-section">
+                        <div class="row align-items-center">
+                            
+                            <!-- LEFT SECTION: Payment Information -->
+                            <div class="col-md-6">
+                                <div class="payment-info">
+                                    <!-- PAYMENT METHOD -->
+                                    <h3 class="payment-title">Paid thru: GCash</h3>
+                                    <!-- VIEW RECEIPT LINK -->
+                                    <a href="#" class="view-receipt-link">View Receipt</a>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT SECTION: Action Buttons -->
+                            <div class="col-md-6">
+                                <div class="action-buttons-container">
+                                    <!-- PREPARE ORDER BUTTON -->
+                                    <button class="prepare-order-btn">Prepare Order</button>
+                                    <!-- ORDER COMPLETE BUTTON -->
+                                    <button class="order-complete-btn">Order Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

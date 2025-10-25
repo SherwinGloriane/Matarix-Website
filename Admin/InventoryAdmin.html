@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management - MATARIX</title>
+    
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="../Admin_assets/css/InventoryAdmin.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         MAIN HEADER SECTION
+    ========================================== -->
+    <!-- MAIN HEADER SECTION -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                
+                <!-- LEFT SECTION: MATARIX Logo -->
+                <div class="col-md-4">
+                    <div class="logo-container">
+                        <!-- MATARIX LOGO IMAGE -->
+                        <img src="../Admin_assets/images/logo.png" alt="MATARIX Logo" class="logo-image">
+                    </div>
+                </div>
+                
+                <!-- CENTER SECTION: Empty (Search removed) -->
+                <div class="col-md-4"></div>
+                
+                <!-- RIGHT SECTION: Header Action Icons -->
+                <div class="col-md-4">
+                    <div class="header-actions">
+                        <!-- EMAIL/MESSAGES ICON BUTTON -->
+                        <button class="header-action-btn" id="messages-btn">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+
+                       <!-- USER PROFILE ICON BUTTON - Now clickable with href -->
+                        <a href="../Admin/AdminProfile.html" class="header-action-btn" id="profile-btn">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+    <!-- ==========================================
+         MAIN LAYOUT CONTAINER
+    ========================================== -->
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!-- LEFT SIDEBAR NAVIGATION -->
+                <aside class="col-md-2 sidebar-container">
+                    <nav class="sidebar-nav">
+                        
+                        <!-- SIDEBAR NAVIGATION LINKS -->
+                        <ul class="nav-links">
+                            <!-- ORDERS NAVIGATION LINK (ACTIVE) -->
+                            <li>
+                                <a href="../Admin/OrdersAdmin.html" class="nav-link" id="orders-nav">
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            
+                            <!-- INVENTORY NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/InventoryAdmin.html" class="nav-link active" id="inventory-nav">
+                                    <span>Inventory</span>
+                                </a>
+                            </li>
+                            
+                            <!-- DELIVERIES NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/DeliveriesAdmin.html" class="nav-link" id="deliveries-nav">
+                                    <span>Deliveries</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ANALYTICS NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/ReportsAdmin.html" class="nav-link" id="analytics-nav">
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            
+                            <!-- USER MANAGEMENT NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/UserManagement.html" class="nav-link" id="user-management-nav">
+                                    <span>User Management</span>
+                                </a>
+                            </li>
+                            
+                            <!-- ABOUT US NAVIGATION LINK -->
+                            <li>
+                                <a href="../Admin/AboutUs.html" class="nav-link" id="about-nav">
+                                    <span>About us</span>
+                                </a>
+                            </li>
+                        </ul>     
+                    </nav>
+                    
+                    <!-- SIDEBAR FOOTER WITH LOGOUT BUTTON -->
+                    <div class="sidebar-footer">
+                        <button class="logout-button" onclick="window.location.href='../Admin/AdminLogin.html'">Logout</button>
+                    </div>
+
+                </aside>
+
+                <!-- ==========================================
+                     MAIN CONTENT AREA
+                ========================================== -->
+                <main class="col-md-10 main-content">
+                    
+                    <!-- CONTENT HEADER WITH TITLE AND ADD BUTTON -->
+                    <div class="content-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-7">
+                                <!-- PAGE TITLE -->
+                                <h1 class="page-title">Inventory Management</h1>
+                            </div>
+                            <div class="col-md-5 text-right">
+                                <!-- ADD PRODUCT BUTTON -->
+                                <button class="add-product-button ml-auto" id="add-product-btn" data-toggle="modal" data-target="#addProductModal">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Add Product</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         STATISTICS CARDS SECTION
+                    ========================================== -->
+                    <div class="stats-section">
+                        <div class="row">
+                            
+                            <!-- TOTAL PRODUCTS STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <h4>Total Products</h4>
+                                    </div>
+                                    
+                                    <div class="stat-icon">
+                                        <div class="stat-number">247</div>
+                                        <!-- TOTAL PRODUCTS ICON -->
+                                        <img src="../Admin_assets/images/Products.png" alt="Total Products Icon">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- LOW STOCK ITEMS STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <h4>Low Stock Items</h4>
+                                    </div>
+                                    <div class="stat-icon">
+                                        <div class="stat-number">12</div>
+                                        <!-- LOW STOCK WARNING ICON -->
+                                        <img src="../Admin_assets/images/WarningSign.png" alt="Low Stock Icon">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- OUT OF STOCK STAT CARD -->
+                            <div class="col-md-4">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <h4>Out of Stock</h4>
+                                    </div>
+                                    <div class="stat-icon">
+                                        <div class="stat-number">3</div>
+                                        <!-- OUT OF STOCK CHART ICON -->
+                                        <img src="../Admin_assets/images/DownChart.png" alt="Out of Stock Icon">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         FILTERS AND CONTROLS SECTION
+                    ========================================== -->
+                    <div class="filters-section">
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                
+                                <!-- CATEGORY FILTER DROPDOWN -->
+                                <select class="filter-dropdown" id="category-filter">
+                                    <option value="">All Categories</option>
+                                    <option value="building">Building</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="tools">Tools</option>
+                                </select>
+                                
+                                <!-- ITEMS FILTER DROPDOWN -->
+                                <select class="filter-dropdown" id="items-filter">
+                                    <option value="">All Items</option>
+                                    <option value="in-stock">In Stock</option>
+                                    <option value="low-stock">Low Stock</option>
+                                    <option value="out-of-stock">Out of Stock</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-2">
+                                
+                                <!-- MORE FILTERS BUTTON -->
+                                <button class="more-filters-btn" id="more-filters-btn">
+                                    <span>More Filters</span>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         PRODUCT INVENTORY TABLE SECTION
+                    ========================================== -->
+                    <div class="inventory-table-section">
+                        
+                        <!-- TABLE CONTAINER HEADER -->
+                        <div class="table-header">
+                            <h2 class="table-title">Product Inventory</h2>
+                        </div>
+                        
+                        <!-- INVENTORY TABLE -->
+                        <div class="table-responsive">
+                            <table class="inventory-table table">
+                                
+                                <!-- TABLE HEADERS -->
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Stock Level</th>
+                                        <th>Status</th>
+                                        <th>Price</th>
+                                        <th>Last Restocked</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                
+                                <!-- TABLE BODY WITH PRODUCT ROWS -->
+                                <tbody>
+                                    
+                                    <!-- PRODUCT ROW 1 -->
+                                    <tr class="product-row">
+                                        <td>
+                                            <div class="product-info">
+                                        
+                                                <!-- PRODUCT IMAGE PLACEHOLDER -->
+                                                <img src="product-image-placeholder.png" alt="Product Image" class="product-image">
+                                                <div class="product-details">
+                                                    <strong class="product-name">Piece Holder</strong>
+                                                    <small class="product-lot">Lot 1</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- CATEGORY BADGE -->
+                                            <span class="category-badge">Building</span>
+                                        </td>
+                                        <td>
+                                            <div class="stock-info">
+                                                <!-- STOCK LEVEL INDICATOR -->
+                                                <span class="stock-level">155 units</span>
+                                                <small class="stock-min">Min: 50</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- STATUS BADGE -->
+                                            <span class="status-badge status-in-stock">In Stock</span>
+                                        </td>
+                                        <td class="product-price">₱100.00</td>
+                                        <td class="restock-date">2025-01-15</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <!-- VIEW PRODUCT BUTTON -->
+                                                <button class="action-btn view-btn" data-action="view" data-product="1">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                
+                                                <!-- EDIT PRODUCT BUTTON -->
+                                                <button class="action-btn edit-btn" data-action="edit" data-product="1">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                
+                                                <!-- RESTOCK BUTTON -->
+                                                <button class="restock-btn" data-action="restock" data-product="1">
+                                                    Restock
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- PRODUCT ROW 2 -->
+                                    <tr class="product-row">
+                                        <td>
+                                            <div class="product-info">
+                                            
+                                                <img src="product-image-placeholder.png" alt="Product Image" class="product-image">
+                                                <div class="product-details">
+                                                    <strong class="product-name">Piece Holder</strong>
+                                                    <small class="product-lot">Lot 1</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="category-badge">Building</span>
+                                        </td>
+                                        <td>
+                                            <div class="stock-info">
+                                                <span class="stock-level">155 units</span>
+                                                <small class="stock-min">Min: 50</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge status-in-stock">In Stock</span>
+                                        </td>
+                                        <td class="product-price">₱100.00</td>
+                                        <td class="restock-date">2025-01-15</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn view-btn" data-action="view" data-product="2">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="action-btn edit-btn" data-action="edit" data-product="2">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="restock-btn" data-action="restock" data-product="2">
+                                                    Restock
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- PRODUCT ROW 3 -->
+                                    <tr class="product-row">
+                                        <td>
+                                            
+                                                <img src="product-image-placeholder.png" alt="Product Image" class="product-image">
+                                                <div class="product-details">
+                                                    <strong class="product-name">Piece Holder</strong>
+                                                    <small class="product-lot">Lot 1</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="category-badge">Building</span>
+                                        </td>
+                                        <td>
+                                            <div class="stock-info">
+                                                <span class="stock-level">155 units</span>
+                                                <small class="stock-min">Min: 50</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge status-in-stock">In Stock</span>
+                                        </td>
+                                        <td class="product-price">₱100.00</td>
+                                        <td class="restock-date">2025-01-15</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn view-btn" data-action="view" data-product="3">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="action-btn edit-btn" data-action="edit" data-product="3">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="restock-btn" data-action="restock" data-product="3">
+                                                    Restock
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         ADD PRODUCT MODAL POPUP
+    ========================================== -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content add-product-modal">
+                
+                <!-- MODAL HEADER WITH TITLE -->
+                <div class="modal-header add-product-header">
+                    <h2 class="modal-title add-product-title" id="addProductModalLabel">Add Products</h2>
+                    <!-- CLOSE BUTTON -->
+                    <button type="button" class="close modal-close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <!-- MODAL BODY WITH FORM -->
+                <div class="modal-body add-product-body">
+                    <form id="addProductForm">
+                        
+                        <!-- PRODUCT IMAGE UPLOAD SECTION -->
+                        <div class="product-upload-section">
+                            <div class="upload-container">
+                                <!-- UPLOAD BUTTON -->
+                                <button type="button" class="upload-btn" id="uploadImageBtn">
+                                    <i class="fas fa-plus upload-icon"></i>
+                                    <span class="upload-text">Upload Photos</span>
+                                </button>
+                                <!-- HIDDEN FILE INPUT -->
+                                <input type="file" id="productImageInput" accept="image/*" multiple style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <!-- PRODUCT NAME INPUT FIELD -->
+                        <div class="form-group product-form-group">
+                            <label for="productName" class="form-label">Product Name:</label>
+                            <input type="text" class="form-control product-input" id="productName" placeholder="Enter product name" required>
+                        </div>
+                        
+                        <!-- CATEGORY DROPDOWN FIELD -->
+                        <div class="form-group product-form-group">
+                            <label for="productCategory" class="form-label">Category:</label>
+                            <select class="form-control product-select" id="productCategory" required>
+                                <option value="">Select a Category</option>
+                                <option value="building">Building</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="tools">Tools</option>
+                                <option value="hardware">Hardware</option>
+                                <option value="plumbing">Plumbing</option>
+                            </select>
+                        </div>
+                        
+                        <!-- PRODUCT PRICE INPUT FIELD -->
+                        <div class="form-group product-form-group">
+                            <label for="productPrice" class="form-label">Price:</label>
+                            <input type="number" class="form-control product-input" id="productPrice" placeholder="₱ 00.00" min="0" step="0.01" required>
+                        </div>
+                        
+                        <!-- STOCK QUANTITY INPUT FIELD -->
+                        <div class="form-group product-form-group">
+                            <label for="productStock" class="form-label">No. of Stocks:</label>
+                            <input type="number" class="form-control product-input" id="productStock" placeholder="Enter stock quantity (Minimum of no: --)" min="0" required>
+                        </div>
+                        
+                        <!-- PRODUCT DESCRIPTION TEXTAREA -->
+                        <div class="form-group product-form-group">
+                            <label for="productDescription" class="form-label">Add Product Description:</label>
+                            <textarea class="form-control product-textarea" id="productDescription" rows="4" placeholder="Product description" required></textarea>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+                <!-- MODAL FOOTER WITH ACTION BUTTON -->
+                <div class="modal-footer add-product-footer">
+                    <!-- SUBMIT ADD PRODUCT BUTTON -->
+                    <button type="submit" class="btn add-product-submit-btn" form="addProductForm">
+                        Add Products
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 4 JavaScript Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../Admin_assets/js/InventoryAdmin.js"></script>
+    
+</body>
+</html>

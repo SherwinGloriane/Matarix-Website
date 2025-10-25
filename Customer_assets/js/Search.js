@@ -1,0 +1,458 @@
+/**
+ * MATARIX Search System
+ * Shows suggestions while typing, filters only on submit
+ */
+
+// ========== SEARCH FUNCTIONALITY ==========
+
+// Show search suggestions without filtering
+function showSearchSuggestions(query) {
+    const searchTerm = query.toLowerCase().trim();
+    
+    if (!searchTerm) {
+        hideSuggestions();
+        return;
+    }
+    
+    // Get all unique product titles and categories
+    const suggestions = new Set();
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        const title = card.querySelector('.product-title')?.textContent || '';
+        const categorySection = card.closest('.category-products-section');
+        const category = categorySection?.querySelector('.category-products-title')?.textContent.trim() || '';
+        
+        // Add matching product titles
+        if (title.toLowerCase().includes(searchTerm)) {
+            suggestions.add(title);
+        }
+        
+        // Add matching categories
+        if (category.toLowerCase().includes(searchTerm)) {
+            const categoryName = category.replace(/\s+/g, ' ').trim();
+            suggestions.add(categoryName);
+        }
+    });
+    
+    displaySuggestions(Array.from(suggestions).slice(0, 8), searchTerm);
+}
+
+function displaySuggestions(suggestions, searchTerm) {
+    hideSuggestions();
+    
+    if (suggestions.length === 0) return;
+    
+    const searchContainer = document.querySelector('.search-container');
+    const suggestionsBox = document.createElement('div');
+    suggestionsBox.id = 'search-suggestions';
+    suggestionsBox.className = 'search-suggestions-box';
+    
+    suggestions.forEach(suggestion => {
+        const item = document.createElement('div');
+        item.className = 'suggestion-item';
+        
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        item.innerHTML = suggestion.replace(regex, '<strong>$1</strong>');
+        
+        item.addEventListener('click', function() {
+            const searchInput = document.querySelector('.search-input');
+            searchInput.value = suggestion;
+            filterProducts(suggestion);
+            hideSuggestions();
+        });
+        
+        suggestionsBox.appendChild(item);
+    });
+    
+    searchContainer.appendChild(suggestionsBox);
+    addSuggestionsStyles();
+}
+
+function hideSuggestions() {
+    const suggestionsBox = document.getElementById('search-suggestions');
+    if (suggestionsBox) {
+        suggestionsBox.remove();
+    }
+}
+
+function filterProducts(query) {
+    const searchTerm = query.toLowerCase().trim();
+    
+    if (!searchTerm) {
+        showAllProducts();
+        return;
+    }
+    
+    const productCards = document.querySelectorAll('.product-card');
+    let visibleCount = 0;
+    
+    productCards.forEach(card => {
+        const productColumn = card.closest('.col-lg-3, .col-md-6, .col-sm-6');
+        const title = card.querySelector('.product-title')?.textContent.toLowerCase() || '';
+        const categorySection = card.closest('.category-products-section');
+        const category = categorySection?.querySelector('.category-products-title')?.textContent.toLowerCase() || '';
+        
+        const matches = title.includes(searchTerm) || category.includes(searchTerm);
+        
+        if (matches) {
+            productColumn.style.display = 'block';
+            visibleCount++;
+        } else {
+            productColumn.style.display = 'none';
+        }
+    });
+    
+    updateCategorySections();
+    showNoResultsMessage(visibleCount, searchTerm);
+    
+    if (visibleCount > 0) {
+        setTimeout(() => {
+            const productsSection = document.getElementById('products');
+            if (productsSection) {
+                productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
+    }
+}
+
+function showAllProducts() {
+    const productColumns = document.querySelectorAll('.category-products-section .col-lg-3, .category-products-section .col-md-6, .category-products-section .col-sm-6');
+    productColumns.forEach(col => {
+        col.style.display = 'block';
+    });
+    
+    const categorySections = document.querySelectorAll('.category-products-section');
+    categorySections.forEach(section => {
+        section.style.display = 'block';
+    });
+    
+    const noResultsMsg = document.getElementById('no-results-message');
+    if (noResultsMsg) {
+        noResultsMsg.remove();
+    }
+}
+
+function updateCategorySections() {
+    const categorySections = document.querySelectorAll('.category-products-section');
+    
+    categorySections.forEach(section => {
+        const allProducts = section.querySelectorAll('.col-lg-3, .col-md-6, .col-sm-6');
+        const visibleProducts = Array.from(allProducts).filter(col => 
+            col.style.display !== 'none'
+        );
+        
+        section.style.display = visibleProducts.length > 0 ? 'block' : 'none';
+    });
+}
+
+function showNoResultsMessage(count, searchTerm) {
+    const productsSection = document.getElementById('products');
+    let noResultsMsg = document.getElementById('no-results-message');
+    
+    if (count === 0) {
+        if (!noResultsMsg) {
+            noResultsMsg = document.createElement('div');
+            noResultsMsg.id = 'no-results-message';
+            noResultsMsg.innerHTML = `
+                <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <i class="fas fa-search" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
+                    <h3 style="color: #666; margin-bottom: 10px;">No products found</h3>
+                    <p style="color: #999;">No results for "<strong>${searchTerm}</strong>". Try a different search term.</p>
+                    <button onclick="clearSearch()" class="btn btn-primary-red" style="margin-top: 20px; background: #940909; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+                        <i class="fas fa-redo"></i> Clear Search
+                    </button>
+                </div>
+            `;
+            const firstCategory = productsSection.querySelector('.category-products-section');
+            if (firstCategory) {
+                firstCategory.parentNode.insertBefore(noResultsMsg, firstCategory);
+            }
+        }
+    } else {
+        if (noResultsMsg) {
+            noResultsMsg.remove();
+        }
+    }
+}
+
+function clearSearch() {
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    hideSuggestions();
+    showAllProducts();
+}
+
+function handleSearchSubmit(event) {
+    event.preventDefault();
+    const searchInput = event.target.querySelector('.search-input');
+    const query = searchInput?.value || '';
+    hideSuggestions();
+    filterProducts(query);
+}
+
+function addSuggestionsStyles() {
+    const styleId = 'search-suggestions-styles';
+    
+    if (document.getElementById(styleId)) {
+        return;
+    }
+    
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+        .search-suggestions-box {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            margin-top: 0;
+        }
+        
+        .suggestion-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #333;
+            transition: background-color 0.2s ease;
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .suggestion-item strong {
+            color: #940909;
+            font-weight: 600;
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
+
+// ========== CART FUNCTIONALITY FOR QUOTE PAGE ==========
+
+let quoteCart = [];
+
+// Add +/- controls to each product card
+function addProductControls() {
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        // Skip if controls already added
+        if (card.querySelector('.product-add-controls')) return;
+        
+        const productName = card.querySelector('.product-title').textContent;
+        const priceText = card.querySelector('.product-price').textContent;
+        const price = parseFloat(priceText.replace('₱', '').replace(',', '').split('-')[0]);
+        
+        const controls = document.createElement('div');
+        controls.className = 'product-add-controls';
+        controls.innerHTML = `
+            <button class="product-qty-btn" onclick="event.stopPropagation(); updateProductQty('${productName}', -1)">-</button>
+            <span class="product-qty-display" id="qty-${productName.replace(/[^a-zA-Z0-9]/g, '')}">0</span>
+            <button class="product-qty-btn" onclick="event.stopPropagation(); updateProductQty('${productName}', 1)">+</button>
+        `;
+        
+        card.appendChild(controls);
+    });
+}
+
+// Update product quantity from product card
+function updateProductQty(productName, change) {
+    const card = Array.from(document.querySelectorAll('.product-card')).find(c => 
+        c.querySelector('.product-title').textContent === productName
+    );
+    
+    if (!card) return;
+    
+    const priceText = card.querySelector('.product-price').textContent;
+    const price = parseFloat(priceText.replace('₱', '').replace(',', '').split('-')[0]);
+    const imageSrc = card.querySelector('.product-image').src;
+    
+    const existingItem = quoteCart.find(item => item.name === productName);
+    
+    if (existingItem) {
+        existingItem.quantity += change;
+        if (existingItem.quantity <= 0) {
+            quoteCart = quoteCart.filter(item => item.name !== productName);
+        }
+    } else if (change > 0) {
+        quoteCart.push({
+            name: productName,
+            price: price,
+            quantity: 1,
+            image: imageSrc
+        });
+    }
+    
+    updateAllDisplays();
+}
+
+// Update quantity from cart
+function updateQuantity(productName, change) {
+    const item = quoteCart.find(item => item.name === productName);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            quoteCart = quoteCart.filter(i => i.name !== productName);
+        }
+        updateAllDisplays();
+    }
+}
+
+// Remove item from cart
+function removeFromQuoteCart(productName) {
+    quoteCart = quoteCart.filter(item => item.name !== productName);
+    updateAllDisplays();
+}
+
+// Update all displays (cart + product cards)
+function updateAllDisplays() {
+    updateQuoteCartDisplay();
+    updateProductCardQuantities();
+}
+
+// Update product card quantity displays
+function updateProductCardQuantities() {
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        const productName = card.querySelector('.product-title').textContent;
+        const qtyDisplay = card.querySelector('.product-qty-display');
+        
+        if (qtyDisplay) {
+            const cartItem = quoteCart.find(item => item.name === productName);
+            qtyDisplay.textContent = cartItem ? cartItem.quantity : 0;
+        }
+    });
+}
+
+// Update cart display
+function updateQuoteCartDisplay() {
+    const container = document.getElementById('cartItemsContainer');
+    
+    if (!container) return;
+    
+    if (quoteCart.length === 0) {
+        container.innerHTML = `
+            <div class="empty-cart-message">
+                <i class="fas fa-shopping-basket"></i>
+                <p>No items selected yet. Click the + button on products above to add them to your quotation request.</p>
+            </div>
+        `;
+        updateTotals(0, 0, 0);
+        return;
+    }
+    
+    let cartHTML = '';
+    let subtotal = 0;
+    
+    quoteCart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        
+        cartHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">₱${item.price.toFixed(2)} each</div>
+                </div>
+                <div class="cart-item-quantity">
+                    <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                    <span class="qty-display">${item.quantity}</span>
+                    <button class="qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                </div>
+                <div class="cart-item-total">₱${itemTotal.toFixed(2)}</div>
+                <button class="remove-item-btn" onclick="removeFromQuoteCart('${item.name}')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = cartHTML;
+    
+    const tax = subtotal * 0.12;
+    const total = subtotal + tax;
+    
+    updateTotals(subtotal, tax, total);
+}
+
+// Update totals display
+function updateTotals(subtotal, tax, total) {
+    const subtotalEl = document.querySelector('.cart-subtotal');
+    const taxEl = document.querySelector('.cart-tax');
+    const totalEl = document.querySelector('.cart-total');
+    
+    if (subtotalEl) subtotalEl.textContent = `₱${subtotal.toFixed(2)}`;
+    if (taxEl) taxEl.textContent = `₱${tax.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `₱${total.toFixed(2)}`;
+}
+
+// ========== INITIALIZATION ==========
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('MATARIX System Initialized');
+    
+    // Setup search functionality
+    const searchForm = document.querySelector('.search-container form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', handleSearchSubmit);
+        
+        const searchInput = searchForm.querySelector('.search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value;
+                
+                if (query.trim() === '') {
+                    hideSuggestions();
+                    showAllProducts();
+                } else {
+                    showSearchSuggestions(query);
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-container')) {
+                    hideSuggestions();
+                }
+            });
+        }
+    }
+    
+    // Check if we're on the quote page by looking for cart summary section
+    const isQuotePage = document.querySelector('.cart-summary-section') !== null;
+    
+    if (isQuotePage) {
+        addProductControls();
+        console.log('Quote page - cart controls added');
+    } else {
+        console.log('Not quote page - cart controls skipped');
+    }
+    
+    console.log('System ready');
+});
+
+// Export functions for global access
+window.clearSearch = clearSearch;
+window.updateQuantity = updateQuantity;
+window.removeFromQuoteCart = removeFromQuoteCart;
+window.updateProductQty = updateProductQty;
