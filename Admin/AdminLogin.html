@@ -10,6 +10,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../Admin_assets/css/AdminLogin.css">
+    <style>
+        #loginMessage {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+        #loginMessage.alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        #loginMessage.alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,13 +47,16 @@
                 </div>
 
                 <!-- Login Form -->
-                <form class="login-form">
+                <form class="login-form" id="adminLoginForm">
+                    
+                    <!-- Error/Success Message -->
+                    <div id="loginMessage" class="alert" style="display: none;"></div>
                     
                     <!-- Username/Email Input Field with Icon -->
                     <div class="form-group">
                         <div class="input-with-icon">
                             <i class="fas fa-user input-icon"></i>
-                            <input type="text" class="form-input" placeholder="Username or Email">
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
                         </div>
                     </div>
 
@@ -42,7 +64,7 @@
                     <div class="form-group">
                         <div class="input-with-icon">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" class="form-input" placeholder="Password">
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Password" required>
                         </div>
                     </div>
                     
@@ -52,9 +74,7 @@
                     </div>
 
                     <!-- Login Button -->
-                    <a href="../Admin/OrdersAdmin.html">
-                        <button type="button" class="login-button">LOGIN</button>
-                    </a>
+                    <button type="submit" class="login-button" id="loginButton">LOGIN</button>
 
                     <!-- Sign Up Link Section -->
                     <div class="signup-link-section">

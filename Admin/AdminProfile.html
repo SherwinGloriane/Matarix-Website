@@ -158,14 +158,14 @@
                                         <div class="col-md-6">
                                             <label class="form-label">First Name</label>
                                             <div class="input-with-icon">
-                                                <input type="text" class="form-input" placeholder="Enter first name">
+                                                <input type="text" class="form-input" id="firstName" placeholder="Enter first name">
                                                 <i class="fas fa-edit input-edit-icon"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Last Name</label>
                                             <div class="input-with-icon">
-                                                <input type="text" class="form-input" placeholder="Enter last name">
+                                                <input type="text" class="form-input" id="lastName" placeholder="Enter last name">
                                                 <i class="fas fa-edit input-edit-icon"></i>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                         <div class="col-12">
                                             <label class="form-label">Email Address</label>
                                             <div class="input-with-icon">
-                                                <input type="email" class="form-input" placeholder="Enter email address">
+                                                <input type="email" class="form-input" id="email" placeholder="Enter email address">
                                                 <i class="fas fa-edit input-edit-icon"></i>
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@
                                         <div class="col-12">
                                             <label class="form-label">Phone Number</label>
                                             <div class="input-with-icon">
-                                                <input type="tel" class="form-input" placeholder="Enter phone number">
+                                                <input type="tel" class="form-input" id="phoneNumber" placeholder="Enter phone number">
                                                 <i class="fas fa-edit input-edit-icon"></i>
                                             </div>
                                         </div>
@@ -224,6 +224,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom JavaScript -->
+    <!-- Admin Authentication Check - MUST load first to verify session -->
+    <script src="../Admin_assets/js/admin_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
     <script src="../Admin_assets/js/AdminProfile.js"></script>
 </body>
 </html>

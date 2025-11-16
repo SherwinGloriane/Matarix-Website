@@ -997,11 +997,18 @@
     <!-- ========== FOOTER END ========== -->
 
     <!-- Bootstrap 4 JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Use full jQuery for AJAX support -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load FIRST to intercept all navigation -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
     
     <!-- MATARIX Search System -->
     <script src="../Customer_assets/js/Search.js"></script>
+    
+    <!-- Authentication Check Script - Must be loaded after jQuery -->
+    <script src="../Customer_assets/js/auth_check.js"></script>
 </body>
 </html>
                 
