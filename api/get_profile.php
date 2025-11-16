@@ -47,7 +47,8 @@ try {
                 'phone_number' => $user['Phone_Number'] ?? '',
                 'address' => $user['address'] ?? '',
                 'role' => $user['role'] ?? '',
-                'full_name' => trim(($user['First_Name'] ?? '') . ' ' . ($user['Middle_Name'] ?? '') . ' ' . ($user['Last_Name'] ?? ''))
+                'full_name' => trim(($user['First_Name'] ?? '') . ' ' . ($user['Middle_Name'] ?? '') . ' ' . ($user['Last_Name'] ?? '')),
+                'profile_picture' => $user['profile_picture'] ?? null
             ]
         ]);
     } else {

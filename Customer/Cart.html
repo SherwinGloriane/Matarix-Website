@@ -34,7 +34,7 @@
                 </a>
                 <a href="../Customer/Cart.html" style="color: white; text-decoration: none;">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-badge">5</span>
+                    <span class="cart-badge" style="display: none;">0</span>
                 </a>
                 <a href="./CustomerProfile.html" style="color: white; text-decoration: none;">
                     <i class="far fa-user"></i>
@@ -74,195 +74,15 @@
                 <div class="col-lg-8 mb-4">
                     <div class="cart-section">
                         <div class="cart-header">
-                            <h3>Cart Items (5)</h3>
+                            <h3>Cart Items (0)</h3>
                             <button class="btn btn-link text-danger" onclick="clearCart()">
                                 <i class="fas fa-trash"></i> Clear All
                             </button>
                         </div>
 
-                        <!-- Cart Item 1 -->
-                        <div class="cart-item" data-price="25.00">
-                            <div class="item-image">
-                                <div class="item-icon">🧱</div>
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-name">Hollow Blocks</h4>
-                                <p class="item-description">4-inch concrete hollow blocks, standard size</p>
-                                <div class="item-specs">
-                                    <span class="spec">4" x 8" x 16"</span>
-                                    <span class="spec">Concrete</span>
-                                </div>
-                                <div class="item-price">₱25.00 <span class="price-unit">per piece</span></div>
-                                <div class="item-stock">
-                                    <i class="fas fa-check-circle text-success"></i>
-                                    <span>In Stock</span>
-                                </div>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <label>Quantity:</label>
-                                    <div class="quantity-selector">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, -1)">-</button>
-                                        <input type="number" class="quantity-input" value="500" min="1" max="500" onchange="calculateItemTotal(this)">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="item-total">
-                                    <span class="total-label">Total:</span>
-                                    <span class="total-amount">₱12,500.00</span>
-                                </div>
-                                <button class="btn btn-remove" onclick="removeItem(this)">
-                                    <i class="fas fa-trash"></i> Remove
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Cart Item 2 -->
-                        <div class="cart-item" data-price="143.00">
-                            <div class="item-image">
-                                <div class="item-icon">⚙️</div>
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-name">Mild Steel Bars</h4>
-                                <p class="item-description">Grade 40 deformed steel bars for reinforcement</p>
-                                <div class="item-specs">
-                                    <span class="spec">12mm diameter</span>
-                                    <span class="spec">6m length</span>
-                                </div>
-                                <div class="item-price">₱143.00 <span class="price-unit">per piece</span></div>
-                                <div class="item-stock">
-                                    <i class="fas fa-check-circle text-success"></i>
-                                    <span>In Stock</span>
-                                </div>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <label>Quantity:</label>
-                                    <div class="quantity-selector">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, -1)">-</button>
-                                        <input type="number" class="quantity-input" value="50" min="1" max="250" onchange="calculateItemTotal(this)">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="item-total">
-                                    <span class="total-label">Total:</span>
-                                    <span class="total-amount">₱7,150.00</span>
-                                </div>
-                                <button class="btn btn-remove" onclick="removeItem(this)">
-                                    <i class="fas fa-trash"></i> Remove
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Cart Item 3 -->
-                        <div class="cart-item" data-price="285.00">
-                            <div class="item-image">
-                                <div class="item-icon">🏗️</div>
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-name">Portland Cement</h4>
-                                <p class="item-description">Type I Portland cement, 40kg bags</p>
-                                <div class="item-specs">
-                                    <span class="spec">40kg bag</span>
-                                    <span class="spec">Type I</span>
-                                </div>
-                                <div class="item-price">₱285.00 <span class="price-unit">per bag</span></div>
-                                <div class="item-stock">
-                                    <i class="fas fa-check-circle text-success"></i>
-                                    <span>In Stock</span>
-                                </div>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <label>Quantity:</label>
-                                    <div class="quantity-selector">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, -1)">-</button>
-                                        <input type="number" class="quantity-input" value="20" min="1" max="150" onchange="calculateItemTotal(this)">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="item-total">
-                                    <span class="total-label">Total:</span>
-                                    <span class="total-amount">₱5,700.00</span>
-                                </div>
-                                <button class="btn btn-remove" onclick="removeItem(this)">
-                                    <i class="fas fa-trash"></i> Remove
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Cart Item 4 -->
-                        <div class="cart-item" data-price="180.00">
-                            <div class="item-image">
-                                <div class="item-icon">🪵</div>
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-name">Lumber 2x4</h4>
-                                <p class="item-description">Kiln-dried pine lumber, construction grade</p>
-                                <div class="item-specs">
-                                    <span class="spec">2" x 4" x 8'</span>
-                                    <span class="spec">Pine</span>
-                                </div>
-                                <div class="item-price">₱180.00 <span class="price-unit">per piece</span></div>
-                                <div class="item-stock">
-                                    <i class="fas fa-exclamation-triangle text-warning"></i>
-                                    <span>Low Stock (25 available)</span>
-                                </div>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <label>Quantity:</label>
-                                    <div class="quantity-selector">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, -1)">-</button>
-                                        <input type="number" class="quantity-input" value="15" min="1" max="25" onchange="calculateItemTotal(this)">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="item-total">
-                                    <span class="total-label">Total:</span>
-                                    <span class="total-amount">₱2,700.00</span>
-                                </div>
-                                <button class="btn btn-remove" onclick="removeItem(this)">
-                                    <i class="fas fa-trash"></i> Remove
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Cart Item 5 -->
-                        <div class="cart-item" data-price="450.00">
-                            <div class="item-image">
-                                <div class="item-icon">🔩</div>
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-name">Galvanized Nails</h4>
-                                <p class="item-description">Common nails, galvanized finish, 3-inch</p>
-                                <div class="item-specs">
-                                    <span class="spec">3 inch</span>
-                                    <span class="spec">25kg box</span>
-                                </div>
-                                <div class="item-price">₱450.00 <span class="price-unit">per box</span></div>
-                                <div class="item-stock">
-                                    <i class="fas fa-check-circle text-success"></i>
-                                    <span>In Stock</span>
-                                </div>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <label>Quantity:</label>
-                                    <div class="quantity-selector">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, -1)">-</button>
-                                        <input type="number" class="quantity-input" value="5" min="1" max="80" onchange="calculateItemTotal(this)">
-                                        <button class="btn-quantity" onclick="updateQuantity(this, 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="item-total">
-                                    <span class="total-label">Total:</span>
-                                    <span class="total-amount">₱2,250.00</span>
-                                </div>
-                                <button class="btn btn-remove" onclick="removeItem(this)">
-                                    <i class="fas fa-trash"></i> Remove
-                                </button>
-                            </div>
+                        <!-- Cart items will be loaded dynamically here -->
+                        <div id="cartItemsContainer">
+                            <!-- Cart items will be inserted here by load_cart.js -->
                         </div>
 
                         <!-- Empty Cart Message (hidden by default) -->
@@ -288,8 +108,12 @@
                         
                         <div class="summary-details">
                             <div class="summary-row">
-                                <span>Subtotal (5 items):</span>
-                                <span id="subtotal">₱30,300.00</span>
+                                <span>Subtotal:</span>
+                                <span id="subtotal">₱0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax (12%):</span>
+                                <span id="tax">₱0.00</span>
                             </div>
                             <div class="summary-row">
                                 <span>Shipping:</span>
@@ -299,14 +123,14 @@
                             <div class="summary-divider"></div>
                             <div class="summary-total">
                                 <span>Total:</span>
-                                <span id="grandTotal">₱33,936.00</span>
+                                <span id="grandTotal">₱0.00</span>
                             </div>
                         </div>
 
 
 
                       <div class="checkout-actions">
-                        <a href="checkout.html" class="btn btn-custom btn-block btn-checkout">
+                        <a href="Checkout.html" class="btn btn-custom btn-block btn-checkout">
                             <i class="fas fa-credit-card"></i> Proceed to Checkout
                         </a>
                     </div>
@@ -322,129 +146,44 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Cart Manager - Must load for cart functionality -->
+    <script src="../Customer_assets/js/cart_manager.js"></script>
+    
+    <!-- Load Cart Items from localStorage -->
+    <script src="../Customer_assets/js/load_cart.js"></script>
+    
     <script>
-        // Update quantity
-        function updateQuantity(btn, change) {
-            const input = btn.parentElement.querySelector('.quantity-input');
-            const currentValue = parseInt(input.value);
-            const newValue = currentValue + change;
-            const min = parseInt(input.getAttribute('min'));
-            const max = parseInt(input.getAttribute('max'));
-            
-            if (newValue >= min && newValue <= max) {
-                input.value = newValue;
-                calculateItemTotal(input);
-            }
-        }
-
-        // Calculate item total
-        function calculateItemTotal(input) {
-            const cartItem = input.closest('.cart-item');
-            const price = parseFloat(cartItem.getAttribute('data-price'));
-            const quantity = parseInt(input.value);
-            const total = price * quantity;
-            
-            cartItem.querySelector('.total-amount').textContent = `₱${total.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
-            calculateCartTotal();
-        }
-
-        // Calculate cart total
-        function calculateCartTotal() {
-            const cartItems = document.querySelectorAll('.cart-item');
-            let subtotal = 0;
-            let itemCount = 0;
-            
-            cartItems.forEach(item => {
-                const totalElement = item.querySelector('.total-amount');
-                const total = parseFloat(totalElement.textContent.replace('₱', '').replace(',', ''));
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-                subtotal += total;
-                itemCount += quantity;
-            });
-            
-            const tax = subtotal * 0.12;
-            const grandTotal = subtotal + tax;
-            
-            document.getElementById('subtotal').textContent = `₱${subtotal.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
-            document.getElementById('tax').textContent = `₱${tax.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
-            document.getElementById('grandTotal').textContent = `₱${grandTotal.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
-            
-            const cartHeader = document.querySelector('.cart-header h3');
-            cartHeader.textContent = `Cart Items (${itemCount})`;
-        }
-
-        // Remove item from cart
-        function removeItem(btn) {
-            const cartItem = btn.closest('.cart-item');
-            cartItem.remove();
-            calculateCartTotal();
-            
-            const remainingItems = document.querySelectorAll('.cart-item');
-            if (remainingItems.length === 0) {
-                showEmptyCart();
-            }
-        }
-
-        // Clear all items
-        function clearCart() {
-            if (confirm('Are you sure you want to remove all items from your cart?')) {
-                const cartItems = document.querySelectorAll('.cart-item');
-                cartItems.forEach(item => item.remove());
-                showEmptyCart();
-            }
-        }
-
-        // Show empty cart message
-        function showEmptyCart() {
-            document.querySelector('.cart-section').innerHTML = `
-                <div class="empty-cart">
-                    <div class="empty-cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Your cart is empty</h3>
-                    <p>Add some materials to get started with your order</p>
-                    <button class="btn btn-custom" onclick="continueShopping()">
-                        <i class="fas fa-cubes"></i> Browse Materials
-                    </button>
-                </div>
-            `;
-            
-            document.getElementById('subtotal').textContent = '₱0.00';
-            document.getElementById('tax').textContent = '₱0.00';
-            document.getElementById('grandTotal').textContent = '₱0.00';
-        }
-
-        // Apply promo code
+        // Apply promo code (if needed in future)
         function applyPromo() {
-            const promoCode = document.getElementById('promoCode').value.trim();
+            const promoCode = document.getElementById('promoCode');
             if (promoCode) {
-                if (promoCode.toUpperCase() === 'SAVE10') {
-                    alert('Promo code applied! 10% discount added.');
-                } else {
-                    alert('Invalid promo code. Please try again.');
+                const code = promoCode.value.trim();
+                if (code) {
+                    if (code.toUpperCase() === 'SAVE10') {
+                        alert('Promo code applied! 10% discount added.');
+                    } else {
+                        alert('Invalid promo code. Please try again.');
+                    }
                 }
             }
         }
 
-        // Continue shopping
-        function continueShopping() {
-            window.location.href = 'landing.html';
-        }
-
         // Proceed to checkout
         function proceedToCheckout() {
-            const cartItems = document.querySelectorAll('.cart-item');
-            if (cartItems.length === 0) {
+            const cart = window.CartManager ? window.CartManager.getCart() : [];
+            if (cart.length === 0) {
                 alert('Your cart is empty. Add some items first!');
                 return;
             }
-            window.location.href = 'order-summary.html';
+            window.location.href = 'OrderSummary.html';
         }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            calculateCartTotal();
-        });
     </script>
 </body>
 </html>

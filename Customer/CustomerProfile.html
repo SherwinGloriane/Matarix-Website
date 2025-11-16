@@ -86,7 +86,7 @@
                                 <h5 class="card-title">Profile Picture</h5>
                             </div>
                             <div class="profile-picture-container">
-                                <div class="profile-picture">
+                                <div class="profile-picture" id="profilePictureDisplay">
                                     <i class="fas fa-user"></i>
                                 </div>
                                 <button class="btn btn-upload" onclick="uploadPicture()">
@@ -212,6 +212,13 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
     <script>
         // Load user profile data
         function loadUserProfile() {
@@ -253,6 +260,14 @@
                     // Update role display
                     if (user.role) {
                         document.getElementById('profileDisplayRole').textContent = user.role;
+                    }
+                    
+                    // Update profile picture if available
+                    if (user.profile_picture) {
+                        const profilePicture = document.getElementById('profilePictureDisplay') || document.querySelector('.profile-picture');
+                        if (profilePicture) {
+                            profilePicture.innerHTML = `<img src="../${user.profile_picture}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                        }
                     }
                     
                     console.log('Profile data loaded successfully');
@@ -309,20 +324,42 @@
         }
 
         // Profile functions
-        function uploadPicture() {
+        async function uploadPicture() {
             // Create file input
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-            input.onchange = function(e) {
+            input.onchange = async function(e) {
                 const file = e.target.files[0];
                 if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        // Update profile picture (in real app, this would upload to server)
-                        alert('Profile picture uploaded successfully!');
-                    };
-                    reader.readAsDataURL(file);
+                    // Upload to server
+                    const formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('type', 'profile');
+                    
+                    try {
+                        const response = await fetch('../api/upload_image.php', {
+                            method: 'POST',
+                            credentials: 'include',
+                            body: formData
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            // Update profile picture display
+                            const profilePicture = document.getElementById('profilePictureDisplay') || document.querySelector('.profile-picture');
+                            if (profilePicture) {
+                                profilePicture.innerHTML = `<img src="../${data.file_path}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                            }
+                            alert('Profile picture uploaded successfully!');
+                        } else {
+                            alert('Failed to upload picture: ' + data.message);
+                        }
+                    } catch (error) {
+                        console.error('Upload error:', error);
+                        alert('Failed to upload picture. Please try again.');
+                    }
                 }
             };
             input.click();

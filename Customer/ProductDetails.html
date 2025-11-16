@@ -33,6 +33,7 @@
                 </a>
                 <a href="../Customer/Cart.html" style="color: white; text-decoration: none;">
                     <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" style="display: none;">0</span>
                 </a>
                 <a href="./CustomerProfile.html" style="color: white; text-decoration: none;">
                     <i class="far fa-user"></i>
@@ -175,7 +176,7 @@
                         <!-- Action Buttons -->
                         <div class="action-buttons mb-4">
                             <!-- Add to Cart Button -->
-                            <a href="../Customer/Cart.html" class="btn btn-add-cart">Add to Cart</a>
+                            <a href="../Customer/Cart.html" class="btn btn-add-cart" id="addToCartBtn">Add to Cart</a>
                             
                             <!-- Buy Now Button -->
                         </div>
@@ -263,5 +264,17 @@
     <!-- Bootstrap 4 JS and dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Cart Manager - Must load for cart functionality -->
+    <script src="../Customer_assets/js/cart_manager.js"></script>
+    
+    <!-- Load Product Details from Database -->
+    <script src="../Customer_assets/js/load_product_details.js"></script>
 </body>
 </html>

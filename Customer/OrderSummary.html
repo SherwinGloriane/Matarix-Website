@@ -73,8 +73,8 @@
                         <h1 class="order-title">Order Summary</h1>
                         <div class="order-details text-right">
                             <p class="mb-1 text-muted">Estimated Delivery</p>
-                            <p class="mb-0 delivery-date">June 5, 2025</p>
-                            <p class="mb-0 delivery-time">9:00 AM</p>
+                            <p class="mb-0 delivery-date">Loading...</p>
+                            <p class="mb-0 delivery-time">Loading...</p>
                         </div>
                     </div>
                 </div>
@@ -95,48 +95,7 @@
                                 </tr>
                             </thead>
                             <tbody id="orderItemsBody">
-                                <!-- ORDER ITEM ROW 1 -->
-                                <tr class="order-item">
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <!-- PRODUCT IMAGE PLACEHOLDER -->
-                                            <img src="../Customer_assets/images/block.png" alt="Hollow Block" class="product-thumb mr-3">
-                                            <div class="product-info">
-                                                <span class="product-name">Hollow Block</span>
-                                                <div class="d-md-none mt-1">
-                                                    <small class="text-muted d-block">Qty: 300</small>
-                                                    <small class="text-muted d-md-none d-block">39cm x 39cm</small>
-                                                    <small class="text-muted d-sm-none d-block">₱90.50</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center quantity-col">300</td>
-                                    <td class="text-center variation-col d-none d-md-table-cell">39cm x 39cm</td>
-                                    <td class="text-center price-col d-none d-sm-table-cell">₱90.50</td>
-                                    <td class="text-center total-col font-weight-bold">₱3,150.00</td>
-                                </tr>
-                                <!-- ORDER ITEM ROW 2 -->
-                                <tr class="order-item">
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <!-- PRODUCT IMAGE PLACEHOLDER -->
-                                            <img src="../Customer_assets/images/Steel.jpg" alt="Mild Steel" class="product-thumb mr-3">
-                                            <div class="product-info">
-                                                <span class="product-name">Mild Steel</span>
-                                                <div class="d-md-none mt-1">
-                                                    <small class="text-muted d-block">Qty: 50</small>
-                                                    <small class="text-muted d-md-none d-block">6mm4x6m</small>
-                                                    <small class="text-muted d-sm-none d-block">₱300</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center quantity-col">50</td>
-                                    <td class="text-center variation-col d-none d-md-table-cell">6mm4x6m</td>
-                                    <td class="text-center price-col d-none d-sm-table-cell">₱300</td>
-                                    <td class="text-center total-col font-weight-bold">₱15,000.00</td>
-                                </tr>
+                                <!-- Order items will be loaded dynamically here -->
                             </tbody>
                         </table>
                     </div>
@@ -148,7 +107,7 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="total-amount">
                                 <span class="total-label">Total:</span>
-                                <span class="total-value" id="orderTotalValue">₱18,150.00</span>
+                                <span class="total-value" id="orderTotalValue">₱0.00</span>
                             </div>
                         </div>
                     </div>
@@ -159,13 +118,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="payment-method-display">
-                                <h6 class="payment-title">Paid thru: GCash</h6>
-                                <div class="gcash-info d-flex align-items-center">
+                                <h6 class="payment-title">Paid thru: Loading...</h6>
+                                <div class="gcash-info d-flex align-items-center" style="display: none;">
                                     <!-- GCASH LOGO PLACEHOLDER -->
                                     <img src="../Customer_assets/images/Gcash.png" alt="GCash" class="gcash-icon mr-3">
                                     <div class="payment-details">
                                         <p class="mb-1">
-                                            <a href="receipt.html?from=order-summary" class="receipt-link" id="viewReceiptLink">View Receipt</a>
+                                            <a href="#" class="receipt-link" id="viewReceiptLink">View Receipt</a>
                                         </p>
                                     </div>
                                 </div>
@@ -220,6 +179,15 @@
             // No need for click handler since we're using href="receipt.html?from=order-summary"
         });
     </script>
+    
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Load Order Summary -->
+    <script src="../Customer_assets/js/load_order_summary.js"></script>
     
     <!-- MATARIX NAVIGATION SYSTEM -->
     <script src="../Customer_assets/js/navigation.js"></script>

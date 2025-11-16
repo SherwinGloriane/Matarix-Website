@@ -73,11 +73,11 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div class="delivery-info">
-                                        <p class="customer-name">Carla Mendoza</p>
-                                        <p class="customer-address">Blk 2 Chavez St. Dalmen Subdivision City</p>
-                                        <p class="customer-phone"><i class="fas fa-phone mr-2"></i>09xxxxxxx</p>
+                                        <p class="customer-name">Loading...</p>
+                                        <p class="customer-address">Loading address...</p>
+                                        <p class="customer-phone"><i class="fas fa-phone mr-2"></i>Loading phone...</p>
                                     </div>
-                                    <button class="btn btn-outline-danger btn-sm">
+                                    <button class="btn btn-outline-danger btn-sm" id="editProfileBtn">
                                         <i class="fas fa-edit mr-1"></i>Edit
                                     </button>
                                 </div>
@@ -101,34 +101,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="bg-light rounded p-2 mr-3" style="width: 50px; height: 50px;"></div>
-                                                        <div>
-                                                            <h6 class="mb-0">Hollow Block</h6>
-                                                            <small class="text-muted">39cm x 39cm</small>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">300</td>
-                                                <td class="text-center">₱90.50</td>
-                                                <td class="text-center font-weight-bold">₱27,150</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="bg-light rounded p-2 mr-3" style="width: 50px; height: 50px;"></div>
-                                                        <div>
-                                                            <h6 class="mb-0">Mild Steel</h6>
-                                                            <small class="text-muted">6mm x 6m</small>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">50</td>
-                                                <td class="text-center">₱300</td>
-                                                <td class="text-center font-weight-bold">₱15,000</td>
-                                            </tr>
+                                            <!-- Order items will be loaded dynamically here -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -143,17 +116,17 @@
                             
                             <div class="summary-row">
                                 <span class="summary-label">Subtotal:</span>
-                                <span class="summary-value">₱42,150</span>
+                                <span class="summary-value">₱0.00</span>
                             </div>
                             
                             <div class="summary-row">
                                 <span class="summary-label">Delivery Fee:</span>
-                                <span class="summary-value">₱650</span>
+                                <span class="summary-value text-success">Free</span>
                             </div>
                             
                             <div class="summary-row total-row">
                                 <span class="summary-label">Total:</span>
-                                <span class="summary-value">₱42,800</span>
+                                <span class="summary-value">₱0.00</span>
                             </div>
                             
                             <button class="btn btn-matarix mt-4" id="proceedToPayment">
@@ -302,11 +275,8 @@
                     $('#qrPaymentPopup').addClass('show');
                 }, 300);
             } else if (selectedPaymentMethod === 'onsite') {
-                // Handle onsite payment
-                closePaymentMethodPopup();
-                alert('Order confirmed! You can pay when your order is delivered.');
-                // Redirect to order confirmation or receipt page
-                // window.location.href = 'order-confirmation.html';
+                // Create order for onsite payment
+                createOrder('On-Site');
             }
         });
 
@@ -346,14 +316,34 @@
             fileInput.accept = 'image/*';
             fileInput.style.display = 'none';
             
-            fileInput.onchange = function(e) {
+            fileInput.onchange = async function(e) {
                 const file = e.target.files[0];
                 if (file) {
-                    // Handle file upload here
-                    alert('Receipt uploaded successfully! Your payment is being processed.');
-                    closeQRPaymentPopup();
-                    // Redirect to order confirmation or receipt page
-                    // window.location.href = 'payment-receipt.html';
+                    // Upload proof of payment
+                    const formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('type', 'proof_of_payment');
+                    
+                    try {
+                        const uploadResponse = await fetch('../api/upload_image.php', {
+                            method: 'POST',
+                            credentials: 'include',
+                            body: formData
+                        });
+                        
+                        const uploadData = await uploadResponse.json();
+                        
+                        if (uploadData.success) {
+                            // Create order with proof of payment
+                            await createOrder('GCash', uploadData.file_path);
+                            closeQRPaymentPopup();
+                        } else {
+                            alert('Failed to upload receipt: ' + uploadData.message);
+                        }
+                    } catch (error) {
+                        console.error('Upload error:', error);
+                        alert('Failed to upload receipt. Please try again.');
+                    }
                 }
             };
             
@@ -361,6 +351,61 @@
             fileInput.click();
             document.body.removeChild(fileInput);
         });
+        
+        // CREATE ORDER FUNCTION
+        async function createOrder(paymentMethod, proofOfPayment = null) {
+            const cart = window.CartManager ? window.CartManager.getCart() : [];
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Prepare cart items for API
+            const cartItems = cart.map(item => ({
+                product_id: item.product_id,
+                quantity: item.quantity,
+                price: item.price
+            }));
+            
+            try {
+                const response = await fetch('../api/create_order.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        cart_items: cartItems,
+                        payment_method: paymentMethod,
+                        proof_of_payment: proofOfPayment
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Clear cart
+                    window.CartManager.clearCart();
+                    
+                    // Show success message
+                    alert('Order created successfully! Order ID: ' + data.order_id);
+                    
+                    // Redirect to order summary with order_id
+                    const userId = sessionStorage.getItem('user_id');
+                    if (userId) {
+                        window.location.href = `OrderSummary.html?order_id=${data.order_id}&user_id=${userId}`;
+                    } else {
+                        window.location.href = `OrderSummary.html?order_id=${data.order_id}`;
+                    }
+                } else {
+                    alert('Failed to create order: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Create order error:', error);
+                alert('Failed to create order. Please try again.');
+            }
+        }
 
         // KEYBOARD NAVIGATION
         $(document).keydown(function(e) {
@@ -379,5 +424,17 @@
             e.stopPropagation();
         });
     </script>
+    
+    <!-- Cart Manager - Must load for cart functionality -->
+    <script src="../Customer_assets/js/cart_manager.js"></script>
+    
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Load Checkout Data -->
+    <script src="../Customer_assets/js/load_checkout.js"></script>
 </body>
 </html>

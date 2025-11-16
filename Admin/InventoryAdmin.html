@@ -254,138 +254,7 @@
                                 
                                 <!-- TABLE BODY WITH PRODUCT ROWS -->
                                 <tbody>
-                                    
-                                    <!-- PRODUCT ROW 1 -->
-                                    <tr class="product-row">
-                                        <td>
-                                            <div class="product-info">
-                                        
-                                                <!-- PRODUCT IMAGE PLACEHOLDER -->
-                                                <img src="product-image-placeholder.png" alt="Product Image" class="product-image">
-                                                <div class="product-details">
-                                                    <strong class="product-name">Piece Holder</strong>
-                                                    <small class="product-lot">Lot 1</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <!-- CATEGORY BADGE -->
-                                            <span class="category-badge">Building</span>
-                                        </td>
-                                        <td>
-                                            <div class="stock-info">
-                                                <!-- STOCK LEVEL INDICATOR -->
-                                                <span class="stock-level">155 units</span>
-                                                <small class="stock-min">Min: 50</small>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <!-- STATUS BADGE -->
-                                            <span class="status-badge status-in-stock">In Stock</span>
-                                        </td>
-                                        <td class="product-price">₱100.00</td>
-                                        <td class="restock-date">2025-01-15</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <!-- VIEW PRODUCT BUTTON -->
-                                                <button class="action-btn view-btn" data-action="view" data-product="1">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                
-                                                <!-- EDIT PRODUCT BUTTON -->
-                                                <button class="action-btn edit-btn" data-action="edit" data-product="1">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                
-                                                <!-- RESTOCK BUTTON -->
-                                                <button class="restock-btn" data-action="restock" data-product="1">
-                                                    Restock
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- PRODUCT ROW 2 -->
-                                    <tr class="product-row">
-                                        <td>
-                                            <div class="product-info">
-                                            
-                                                <img src="product-image-placeholder.png" alt="Product Image" class="product-image">
-                                                <div class="product-details">
-                                                    <strong class="product-name">Piece Holder</strong>
-                                                    <small class="product-lot">Lot 1</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="category-badge">Building</span>
-                                        </td>
-                                        <td>
-                                            <div class="stock-info">
-                                                <span class="stock-level">155 units</span>
-                                                <small class="stock-min">Min: 50</small>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="status-badge status-in-stock">In Stock</span>
-                                        </td>
-                                        <td class="product-price">₱100.00</td>
-                                        <td class="restock-date">2025-01-15</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="action-btn view-btn" data-action="view" data-product="2">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="action-btn edit-btn" data-action="edit" data-product="2">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="restock-btn" data-action="restock" data-product="2">
-                                                    Restock
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- PRODUCT ROW 3 -->
-                                    <tr class="product-row">
-                                        <td>
-                                            
-                                                <img src="product-image-placeholder.png" alt="Product Image" class="product-image">
-                                                <div class="product-details">
-                                                    <strong class="product-name">Piece Holder</strong>
-                                                    <small class="product-lot">Lot 1</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="category-badge">Building</span>
-                                        </td>
-                                        <td>
-                                            <div class="stock-info">
-                                                <span class="stock-level">155 units</span>
-                                                <small class="stock-min">Min: 50</small>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="status-badge status-in-stock">In Stock</span>
-                                        </td>
-                                        <td class="product-price">₱100.00</td>
-                                        <td class="restock-date">2025-01-15</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="action-btn view-btn" data-action="view" data-product="3">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="action-btn edit-btn" data-action="edit" data-product="3">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="restock-btn" data-action="restock" data-product="3">
-                                                    Restock
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                    <!-- Products will be loaded dynamically here -->
                                 </tbody>
                             </table>
                         </div>
@@ -490,6 +359,9 @@
     
     <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
     <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Load Inventory from Database -->
+    <script src="../Admin_assets/js/load_inventory.js"></script>
     
     <!-- Custom JavaScript -->
     <script src="../Admin_assets/js/InventoryAdmin.js"></script>
