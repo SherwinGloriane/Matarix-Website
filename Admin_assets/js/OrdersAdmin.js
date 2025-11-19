@@ -1,7 +1,9 @@
 // admin-orders.js - Order Management Functions
 
-// Order Management Functions
-function updateOrderStatus(selectElement) {
+// NOTE: updateOrderStatus is now handled by load_orders.js
+// This function is kept for backward compatibility but should not be used
+// The new implementation uses: updateOrderStatus(orderId, newStatus)
+function updateOrderStatus_OLD(selectElement) {
     const orderId = selectElement.closest('tr').cells[0].textContent;
     const newStatus = selectElement.value;
     const currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -13,8 +15,8 @@ function updateOrderStatus(selectElement) {
     console.log(`Order ${orderId} status updated to: ${newStatus}`);
     // Here you would typically send an AJAX request to update the database
     
-    // Update statistics
-    updateStatistics();
+    // Update statistics (disabled - handled by load_orders.js)
+    // updateStatistics_OLD();
 }
 
 function viewOrder(orderId) {
@@ -36,11 +38,14 @@ function deleteOrder(orderId) {
         // Remove the row from the table
         const row = event.target.closest('tr');
         row.remove();
-        updateStatistics();
+        // Statistics are now updated by load_orders.js
+        // updateStatistics_OLD();
     }
 }
 
-function updateStatistics() {
+// NOTE: updateStatistics is now handled by load_orders.js
+// This function is kept for backward compatibility but should not be used
+function updateStatistics_OLD() {
     const rows = document.querySelectorAll('.order-table tbody tr');
     let totalOrders = rows.length;
     let pendingPayments = 0;
@@ -50,6 +55,8 @@ function updateStatistics() {
     rows.forEach(row => {
         const statusSelect = row.querySelector('.status-dropdown');
         const paymentSelect = row.querySelector('.payment-dropdown');
+        
+        if (!statusSelect || !paymentSelect) return;
         
         const status = statusSelect.value;
         const payment = paymentSelect.value;
@@ -65,10 +72,15 @@ function updateStatistics() {
         }
     });
 
-    document.getElementById('totalOrders').textContent = totalOrders;
-    document.getElementById('pendingPayments').textContent = pendingPayments;
-    document.getElementById('inProgress').textContent = inProgress;
-    document.getElementById('completed').textContent = completed;
+    const totalOrdersEl = document.getElementById('totalOrders');
+    const pendingPaymentsEl = document.getElementById('pendingPayments');
+    const inProgressEl = document.getElementById('inProgress');
+    const completedEl = document.getElementById('completed');
+    
+    if (totalOrdersEl) totalOrdersEl.textContent = totalOrders;
+    if (pendingPaymentsEl) pendingPaymentsEl.textContent = pendingPayments;
+    if (inProgressEl) inProgressEl.textContent = inProgress;
+    if (completedEl) completedEl.textContent = completed;
 }
 
 // Search functionality
@@ -93,5 +105,6 @@ function initializeSearch() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeSearch();
-    updateStatistics(); // Initial statistics calculation
+    // Statistics are now updated by load_orders.js
+    // updateStatistics_OLD(); // Disabled - handled by load_orders.js
 });

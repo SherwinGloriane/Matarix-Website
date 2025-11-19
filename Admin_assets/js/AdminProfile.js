@@ -1,4 +1,69 @@
 $(document).ready(function() {
+    // Load user profile data
+    function loadUserProfile() {
+        // First try to get from sessionStorage (quick access)
+        const userId = sessionStorage.getItem('user_id');
+        const userEmail = sessionStorage.getItem('user_email');
+        const userName = sessionStorage.getItem('user_name');
+        const userRole = sessionStorage.getItem('user_role');
+        
+        // If we have basic data, use it temporarily while fetching full profile
+        if (userName) {
+            $('.profile-name').text(userName);
+        }
+        if (userRole) {
+            $('.admin-badge').text(userRole);
+        }
+        
+        // Fetch full profile data from API
+        fetch('../api/get_profile.php', {
+            method: 'GET',
+            credentials: 'include' // Include cookies for session
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.user) {
+                const user = data.user;
+                
+                // Populate form fields using IDs for more reliable targeting
+                $('#firstName').val(user.first_name || '');
+                $('#lastName').val(user.last_name || '');
+                $('#email').val(user.email || '');
+                $('#phoneNumber').val(user.phone_number || '');
+                
+                // Update profile name display
+                const fullName = user.full_name || user.first_name + ' ' + user.last_name || 'User';
+                $('.profile-name').text(fullName.trim() || 'User');
+                
+                // Update role badge
+                if (user.role) {
+                    $('.admin-badge').text(user.role);
+                }
+                
+                console.log('Profile data loaded successfully');
+            } else {
+                console.error('Failed to load profile:', data.message);
+                // Fallback to sessionStorage data
+                if (userName) {
+                    $('.profile-name').text(userName);
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error loading profile:', error);
+            // Fallback to sessionStorage data
+            if (userName) {
+                $('.profile-name').text(userName);
+            }
+            if (userEmail) {
+                $('.form-input[type="email"]').val(userEmail);
+            }
+        });
+    }
+    
+    // Load profile data on page load
+    loadUserProfile();
+    
     // Profile picture change functionality
     $('.profile-status-indicator').on('click', function() {
         // Create a file input element
@@ -73,36 +138,16 @@ $(document).ready(function() {
         // The onclick handler in HTML will handle the redirect
     });
     
-    // Sample data for demonstration (you can remove this in production)
-    const sampleUserData = {
-        firstName: 'John',
-        lastName: 'Admin',
-        email: 'admin@matarix.com',
-        phone: '+1 (555) 123-4567',
-        name: 'John Admin'
-    };
-    
-    // Load sample data (optional - for demonstration)
-    function loadSampleData() {
-        $('.form-input[type="text"]').first().val(sampleUserData.firstName);
-        $('.form-input[type="text"]').last().val(sampleUserData.lastName);
-        $('.form-input[type="email"]').val(sampleUserData.email);
-        $('.form-input[type="tel"]').val(sampleUserData.phone);
-        $('.profile-name').text(sampleUserData.name);
-    }
-    
-    // Uncomment the line below to load sample data
-    // loadSampleData();
     
     // Handle profile form submission (if you want to add a save button later)
     $('.profile-form').on('submit', function(e) {
         e.preventDefault();
         
         const formData = {
-            firstName: $('.form-input[type="text"]').first().val(),
-            lastName: $('.form-input[type="text"]').last().val(),
-            email: $('.form-input[type="email"]').val(),
-            phone: $('.form-input[type="tel"]').val(),
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            email: $('#email').val(),
+            phone: $('#phoneNumber').val(),
             password: $('.form-input[type="password"]').val()
         };
         
