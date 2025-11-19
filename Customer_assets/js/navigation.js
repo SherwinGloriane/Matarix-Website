@@ -54,16 +54,94 @@ function getCurrentPage() {
     return filename;
 }
 
-// Get current step number
+// Get current step number based on order status or page
 function getCurrentStep() {
     const currentPage = getCurrentPage();
+    
+    // For payment.html and processing.html, check order status
+    if (currentPage === 'payment.html' || currentPage === 'Payment.html') {
+        // Check if we have order data
+        if (window.currentOrderData && window.currentOrderData.status) {
+            const status = String(window.currentOrderData.status).trim();
+            console.log(`[getCurrentStep] Payment page, status: "${status}"`);
+            
+            if (status === 'Waiting Payment') {
+                console.log(`[getCurrentStep] Returning step 1 (To Pay)`);
+                return 1; // To Pay
+            }
+            if (status === 'Processing') {
+                console.log(`[getCurrentStep] Returning step 2 (Preparing)`);
+                return 2; // Preparing
+            }
+            if (status === 'Ready') {
+                console.log(`[getCurrentStep] Returning step 3 (Ready)`);
+                return 3; // Ready
+            }
+            
+            console.warn(`[getCurrentStep] Unknown status: "${status}", defaulting to step 1`);
+        } else {
+            console.log(`[getCurrentStep] No order data, defaulting to step 1`);
+        }
+        // Default to step 1 (To Pay) for payment page
+        return 1;
+    }
+    
+    if (currentPage === 'processing.html' || currentPage === 'Processing.html') {
+        // Check if we have order data
+        if (window.currentOrderData && window.currentOrderData.status) {
+            const status = String(window.currentOrderData.status).trim();
+            console.log(`[getCurrentStep] Processing page, status: "${status}"`);
+            
+            if (status === 'Processing') {
+                console.log(`[getCurrentStep] Returning step 2 (Preparing)`);
+                return 2; // Preparing
+            }
+            if (status === 'Ready') {
+                console.log(`[getCurrentStep] Returning step 3 (Ready)`);
+                return 3; // Ready
+            }
+            
+            console.warn(`[getCurrentStep] Unknown status: "${status}", defaulting to step 2`);
+        } else {
+            console.log(`[getCurrentStep] No order data, defaulting to step 2`);
+        }
+        // Default to step 2 (Preparing) for processing page
+        return 2;
+    }
+    
+    // For delivery-tracking.html, check delivery status
+    if (currentPage === 'delivery-tracking.html') {
+        if (window.currentDeliveryData && window.currentDeliveryData.Delivery_Status) {
+            const deliveryStatus = window.currentDeliveryData.Delivery_Status;
+            if (deliveryStatus === 'Pending') return 0; // Pending
+            if (deliveryStatus === 'On the Way') return 1; // To Receive
+            if (deliveryStatus === 'Delivered') return 2; // Completed
+        }
+        // Default to step 0 (Pending) for delivery tracking
+        return 0;
+    }
+    
+    // Default: use page-based step
     return MATARIX_PAGES[currentPage]?.step ?? 0;
 }
 
 // Generate progress tracker HTML
 function generateProgressTracker() {
+    const currentPage = getCurrentPage();
     const currentStep = getCurrentStep();
+    
+    // For delivery-tracking.html, use different tracker steps
+    if (currentPage === 'delivery-tracking.html') {
+        return generateDeliveryTracker(currentStep);
+    }
+    
+    // For payment.html and processing.html, use payment flow tracker
+    if (currentPage === 'payment.html' || currentPage === 'Payment.html' || 
+        currentPage === 'processing.html' || currentPage === 'Processing.html') {
+        return generatePaymentTracker(currentStep);
+    }
 
+    // Default tracker for other pages
     let trackerHTML = `
         <div class="progress-tracker-container">
             <div class="progress-tracker">
@@ -97,6 +175,87 @@ function generateProgressTracker() {
         </div>
     `;
 
+    return trackerHTML;
+}
+
+// Generate payment flow tracker (Summary, To Pay, Preparing, Ready)
+function generatePaymentTracker(currentStep) {
+    const steps = [
+        { step: 0, icon: 'fas fa-list', label: 'Summary' },
+        { step: 1, icon: 'fas fa-wallet', label: 'To Pay' },
+        { step: 2, icon: 'fas fa-box', label: 'Preparing' },
+        { step: 3, icon: 'fas fa-check-circle', label: 'Ready' }
+    ];
+    
+    let trackerHTML = `
+        <div class="progress-tracker-container">
+            <div class="progress-tracker">
+    `;
+    
+    steps.forEach(step => {
+        let stepClass = 'progress-step';
+        if (step.step < currentStep) {
+            stepClass += ' completed';
+        } else if (step.step === currentStep) {
+            stepClass += ' active';
+        } else {
+            stepClass += ' pending';
+        }
+        
+        trackerHTML += `
+            <div class="${stepClass}" data-step="${step.step}">
+                <div class="step-icon"><i class="${step.icon}"></i></div>
+                <div class="step-label">${step.label}</div>
+            </div>
+        `;
+    });
+    
+    trackerHTML += `
+            </div>
+        </div>
+    `;
+    
+    return trackerHTML;
+}
+
+// Generate delivery tracker (Pending, To Receive, Completed, To Rate, History)
+function generateDeliveryTracker(currentStep) {
+    const steps = [
+        { step: 0, icon: 'fas fa-clock', label: 'Pending' },
+        { step: 1, icon: 'fas fa-truck', label: 'To Receive' },
+        { step: 2, icon: 'fas fa-check-circle', label: 'Completed' },
+        { step: 3, icon: 'fas fa-star', label: 'To Rate' },
+        { step: 4, icon: 'fas fa-history', label: 'History' }
+    ];
+    
+    let trackerHTML = `
+        <div class="progress-tracker-container">
+            <div class="progress-tracker">
+    `;
+    
+    steps.forEach(step => {
+        let stepClass = 'progress-step';
+        if (step.step < currentStep) {
+            stepClass += ' completed';
+        } else if (step.step === currentStep) {
+            stepClass += ' active';
+        } else {
+            stepClass += ' pending';
+        }
+        
+        trackerHTML += `
+            <div class="${stepClass}" data-step="${step.step}">
+                <div class="step-icon"><i class="${step.icon}"></i></div>
+                <div class="step-label">${step.label}</div>
+            </div>
+        `;
+    });
+    
+    trackerHTML += `
+            </div>
+        </div>
+    `;
+    
     return trackerHTML;
 }
 
@@ -293,16 +452,76 @@ document.addEventListener('click', function(event) {
 // INIT
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    addProgressTrackerStyles();
+// Flag to prevent multiple initializations
+let navigationInitialized = false;
+
+// Function to initialize tracker (can be called manually or on DOMContentLoaded)
+function initializeProgressTracker() {
     const pageHeader = document.querySelector('.page-header');
-    if (pageHeader) {
+    if (!pageHeader) {
+        console.log('Page header not found, skipping tracker initialization');
+        return;
+    }
+    
+    // Remove any existing trackers first to prevent duplication
+    const existingTrackers = document.querySelectorAll('.progress-tracker-container');
+    if (existingTrackers.length > 0) {
+        console.log(`Removing ${existingTrackers.length} existing tracker(s) to prevent duplication`);
+        existingTrackers.forEach(tracker => tracker.remove());
+    }
+    
+    // Check if already initialized (after removing duplicates)
+    if (navigationInitialized && existingTrackers.length > 0) {
+        // Recreate the tracker
+        addProgressTrackerStyles();
         const trackerHTML = generateProgressTracker();
         pageHeader.insertAdjacentHTML('afterend', trackerHTML);
+        attachNavigationHandlers();
+        console.log('MATARIX Navigation System reinitialized for:', getCurrentPage());
+        return;
     }
+    
+    // Check if already initialized
+    if (navigationInitialized) {
+        console.log('Navigation already initialized, skipping...');
+        return;
+    }
+    
+    addProgressTrackerStyles();
+    const trackerHTML = generateProgressTracker();
+    pageHeader.insertAdjacentHTML('afterend', trackerHTML);
+    navigationInitialized = true;
     attachNavigationHandlers();
-    console.log('MATARIX Navigation System initialized for:', getCurrentPage());
-});
+    
+    const currentPage = getCurrentPage();
+    console.log('MATARIX Navigation System initialized for:', currentPage);
+    
+    // If we have order data, update the tracker immediately
+    if (window.currentOrderData && (currentPage === 'payment.html' || currentPage === 'Payment.html' || 
+        currentPage === 'processing.html' || currentPage === 'Processing.html')) {
+        console.log('Order data available, updating tracker immediately');
+        setTimeout(() => {
+            if (window.MatarixNavigation && window.MatarixNavigation.updateProgressTracker) {
+                window.MatarixNavigation.updateProgressTracker();
+            }
+        }, 100);
+    }
+}
+
+// Only initialize once on DOMContentLoaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait a bit for order data to load (for payment.html and delivery-tracking.html)
+        setTimeout(() => {
+            initializeProgressTracker();
+        }, 500);
+    });
+} else {
+    // DOM already loaded, initialize immediately
+    setTimeout(() => {
+        initializeProgressTracker();
+    }, 500);
+}
 
 // Export for manual use
 window.MatarixNavigation = {
@@ -310,13 +529,50 @@ window.MatarixNavigation = {
     getCurrentPage,
     getCurrentStep,
     initMatarixNavigation: () => {
-        addProgressTrackerStyles();
-        const pageHeader = document.querySelector('.page-header');
-        if (pageHeader) {
-            const trackerHTML = generateProgressTracker();
-            pageHeader.insertAdjacentHTML('afterend', trackerHTML);
+        // Use the centralized initialization function
+        // But only if not already initialized
+        if (!navigationInitialized) {
+            initializeProgressTracker();
         }
-        attachNavigationHandlers();
+    },
+    updateProgressTracker: () => {
+        // Function to update progress tracker based on current order data
+        const tracker = document.querySelector('.progress-tracker-container');
+        if (!tracker) {
+            console.warn('Progress tracker container not found');
+            return;
+        }
+        
+        const currentStep = getCurrentStep();
+        const currentPage = getCurrentPage();
+        const orderStatus = window.currentOrderData?.status;
+        
+        console.log(`[Tracker Update] Page: ${currentPage}, Status: ${orderStatus}, Step: ${currentStep}`);
+        
+        const steps = tracker.querySelectorAll('.progress-step');
+        
+        if (steps.length === 0) {
+            console.warn('No progress steps found in tracker');
+            return;
+        }
+        
+        steps.forEach((stepEl, index) => {
+            const stepNum = parseInt(stepEl.getAttribute('data-step') || index);
+            
+            // Remove all status classes
+            stepEl.classList.remove('completed', 'active', 'pending');
+            
+            // Add appropriate class based on current step
+            if (stepNum < currentStep) {
+                stepEl.classList.add('completed');
+            } else if (stepNum === currentStep) {
+                stepEl.classList.add('active');
+            } else {
+                stepEl.classList.add('pending');
+            }
+        });
+        
+        console.log(`[Tracker Update] Updated ${steps.length} steps, current step: ${currentStep}`);
     },
     toggleOrderDetails,
     reviewOrder,
