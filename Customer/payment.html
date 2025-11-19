@@ -83,10 +83,8 @@
                     <div class="order-item">
                         <div class="item-image">🔩</div>
                         <div class="item-details">
-                            <div class="item-name">Order # ORD-2025-001234</div>
-                            <div class="item-description">2 items • Hollow Blocks, Mild Steel</div>
-                            <div class="item-description">Estimated delivery:</div>
-                            <div class="item-price">₱19,650.00</div>
+                            <div class="item-name">Loading order...</div>
+                            <div class="item-description">Please wait...</div>
                         </div>
                         <div class="order-actions">
                             <i class="fas fa-receipt" style="color: var(--matarix-red-light); font-size: 1.5rem;"></i>
@@ -94,51 +92,9 @@
                         </div>
                     </div>
                     
-                    <!-- Expanded Order Details -->
+                    <!-- Expanded Order Details - Will be loaded dynamically -->
                     <div class="order-details">
-                        <!-- Order Summary Section -->
-                        <div class="order-summary">
-                            <div class="summary-header">Order Summary</div>
-                            
-                            <div class="summary-item">
-                                <div class="summary-item-image">🧱</div>
-                                <div class="summary-item-details">
-                                    <div class="summary-item-name">Hollow Blocks</div>
-                                    <div class="summary-item-qty">Qty: 500</div>
-                                </div>
-                                <div class="summary-item-price">₱12,500.00</div>
-                            </div>
-                            
-                            <div class="summary-item">
-                                <div class="summary-item-image">⚙️</div>
-                                <div class="summary-item-details">
-                                    <div class="summary-item-name">Mild Steel</div>
-                                    <div class="summary-item-qty">Qty: 250</div>
-                                </div>
-                                <div class="summary-item-price">₱7,150.00</div>
-                            </div>
-                            
-                            <div class="summary-subtotal">
-                                <span>Subtotal:</span>
-                                <span>₱19,650.00</span>
-                            </div>
-                            
-                            <div class="summary-total">
-                                <span class="total-label">TOTAL:</span>
-                                <span class="total-amount">₱19,650.00</span>
-                            </div>
-                        </div>
-
-                        <!-- Payment Method Section -->
-                        <div class="payment-method">
-                            <div class="payment-header">Payment Method:</div>
-                            <div class="payment-options">
-                                <div class="payment-option" onclick="selectPayment(this, event)">
-                                    <input type="radio" name="payment" id="gcash" checked>
-                                    <label for="gcash">GCash</label>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Order details will be loaded here -->
                     </div>
                 </div>
             </div>
@@ -202,6 +158,9 @@
     
     <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
     <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Load Payment Order -->
+    <script src="../Customer_assets/js/load_payment.js"></script>
     
     <!-- MATARIX NAVIGATION SYSTEM -->
     <script src="../Customer_assets/js/navigation.js"></script>

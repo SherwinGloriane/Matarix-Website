@@ -32,7 +32,7 @@ $pdo = $db->getConnection();
 
 try {
     // Validate status value
-    $validStatuses = ['Order Confirmed', 'Being Processed', 'On the Way', 'Completed'];
+    $validStatuses = ['Waiting Payment', 'Processing', 'Ready'];
     if (!in_array($status, $validStatuses)) {
         http_response_code(400);
         echo json_encode([
