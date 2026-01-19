@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request for Quotation - MATARIX Construction Supply</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts - Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Customer_assets/css/Quotation.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="./MainPage.html">
+                    <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo">
+                </a>
+            </div>
+            <div class="search-box search-container">
+                <form onsubmit="return false;">
+                    <input type="text" class="search-input" placeholder="Search products...">
+                    <button type="button" class="search-btn"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="header-icons">
+                <a href="notifications.html" style="color: white; text-decoration: none;">
+                    <i class="far fa-bell"></i>
+                </a>
+                <a href="../Customer/Cart.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="./CustomerProfile.html" style="color: white; text-decoration: none;">
+                    <i class="far fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" id="materialsLink" class="materials-nav-link"><i class="fas fa-cubes"></i> Materials</a></li>
+                <li><a href="OrderSummary.html"><i class="fas fa-box"></i> Orders</a></li>
+                <li><a href="delivery-tracking.html"><i class="fas fa-truck"></i> Deliveries</a></li>
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb-nav">
+                <a href="#" id="homeLink" class="home-nav-link">Home</a> > Request for Quotation
+            </div>
+            
+            <h1 class="page-title">Request for Quotation</h1>
+            <div class="products-header">AVAILABLE PRODUCTS</div>
+
+            <!-- Products Wrapper -->
+            <div id="products">
+                <!-- Products will be loaded dynamically from the database -->
+            </div> <!-- Close products wrapper -->
+
+            <!-- Cart Summary Section -->
+            <div class="cart-summary-section">
+                <h2 class="cart-summary-title">
+                    <i class="fas fa-shopping-cart"></i> Selected Items for Quotation
+                </h2>
+                
+                <div class="cart-items-container" id="cartItemsContainer">
+                    <!-- Cart items will be dynamically inserted here -->
+                    <div class="empty-cart-message">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>No items selected yet. Click on products above to add them to your quotation request.</p>
+                    </div>
+                </div>
+
+                <div class="cart-totals">
+                    <div class="cart-summary-row">
+                        <span>Subtotal:</span>
+                        <span class="cart-subtotal">₱0.00</span>
+                    </div>
+                    <div class="cart-summary-row cart-total-row">
+                        <span>Total:</span>
+                        <span class="cart-total">₱0.00</span>
+                    </div>
+                </div>
+            </div>
+        
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>matarixconstruction@gmail.com</span>
+                </div>
+                <div class="footer-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Pioneer St, Bgy. Kapitolyo, Pasig City, Metro Manila</span>
+                </div>
+                <div class="logo">
+                    <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Load Products from Database -->
+    <script src="../Customer_assets/js/load_quotation_products.js"></script>
+    
+    <!-- MATARIX Search System -->
+    <script src="../Customer_assets/js/Search.js"></script>
+    
+    <!-- Navigation Tracker - Handle origin-aware navigation -->
+    <script src="../Customer_assets/js/navigation-tracker.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Update Materials link to use origin-aware navigation
+            $('#materialsLink, .materials-nav-link').on('click', function(e) {
+                e.preventDefault();
+                if (window.NavigationTracker) {
+                    window.NavigationTracker.goToMaterials();
+                } else {
+                    // Fallback
+                    const origin = sessionStorage.getItem('navigationOrigin');
+                    if (origin === 'landing') {
+                        window.location.href = 'LandingPage.html#products';
+                    } else {
+                        window.location.href = 'MainPage.html#products';
+                    }
+                }
+            });
+            
+            // Update Home link to use origin-aware navigation
+            $('#homeLink, .home-nav-link').on('click', function(e) {
+                e.preventDefault();
+                if (window.NavigationTracker) {
+                    window.NavigationTracker.goHome();
+                } else {
+                    // Fallback
+                    const origin = sessionStorage.getItem('navigationOrigin');
+                    if (origin === 'landing') {
+                        window.location.href = 'LandingPage.html';
+                    } else {
+                        window.location.href = 'MainPage.html';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATARIX - Checkout</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../Customer_assets/css/checkout.css" rel="stylesheet">
+    <!-- Notification System CSS -->
+    <link href="../Customer_assets/css/notifications.css" rel="stylesheet">
+    <!-- Calendar Scheduler CSS -->
+    <link href="../Customer_assets/css/calendar-scheduler.css" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER NAVIGATION -->
+    <nav class="navbar navbar-expand-lg matarix-header">
+        <div class="container-fluid">
+            <button class="navbar-toggler d-lg-none" type="button" id="sidebarToggle">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../Customer_assets/images/LOGO.png" alt="MATARIX Logo" height="50" class="logo-img d-none d-md-inline">
+                <span class="d-md-none">MATARIX</span>
+            </a>
+            
+            <div class="ml-auto header-icons">
+                <a href="#" class="navbar-icons">
+                    <i class="fas fa-bell"></i>
+                </a>
+                <a href="./Cart.html" class="navbar-icons">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="./CustomerProfile.html" class="navbar-icons">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR NAVIGATION -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-content">
+                    <a href="#" class="sidebar-item" id="materialsLink">
+                        <i class="fas fa-cubes"></i>Materials
+                    </a>
+                    <a href="./OrderSummary.html" class="sidebar-item active">
+                        <i class="fas fa-box"></i>Orders
+                    </a>
+                    <a href="./delivery-tracking.html" class="sidebar-item">
+                        <i class="fas fa-truck"></i>Deliveries
+                    </a>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT AREA -->
+            <div class="main-content">
+                <h1 class="checkout-title">Checkout</h1>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- DELIVERY INFORMATION -->
+                        <div class="card matarix-card">
+                            <div class="matarix-card-header">
+                                <h5><i class="fas fa-truck mr-2"></i>Delivery Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div class="delivery-info">
+                                        <p class="customer-name">Loading...</p>
+                                        <p class="customer-address">Loading address...</p>
+                                        <p class="customer-phone"><i class="fas fa-phone mr-2"></i>Loading phone...</p>
+                                    </div>
+                                    <button class="btn btn-outline-danger btn-sm" id="editProfileBtn">
+                                        <i class="fas fa-edit mr-1"></i>Edit
+                                    </button>
+                                </div>
+                                
+                                <!-- Calendar Appointment Selection -->
+                                <div class="mt-3">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-calendar-check mr-2"></i>Select Delivery Date
+                                        <span class="text-danger">*</span>
+                                    </h5>
+                                    
+                                    <!-- Calendar View Container -->
+                                    <div id="calendarViewContainer" style="margin-bottom: 20px;">
+                                        <div id="deliveryCalendar"></div>
+                                    </div>
+                                    
+                                    <!-- Selected Date Display -->
+                                    <div id="selectedDateDisplay" class="selected-date-display" style="display: none;">
+                                        <div class="alert alert-info mb-0">
+                                            <i class="fas fa-calendar-check mr-2"></i>
+                                            <strong>Selected Date:</strong> <span id="selectedDateText"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ORDER ITEMS -->
+                        <div class="card matarix-card">
+                            <div class="matarix-card-header">
+                                <h5><i class="fas fa-list mr-2"></i>Order Items</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="text-center">Price</th>
+                                                <th class="text-center">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Order items will be loaded dynamically here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <!-- ORDER SUMMARY -->
+                        <div class="order-summary">
+                            <h4 class="summary-title">Order Summary</h4>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Subtotal:</span>
+                                <span class="summary-value">₱0.00</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Delivery Fee:</span>
+                                <span class="summary-value text-success">Free</span>
+                            </div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Total:</span>
+                                <span class="summary-value">₱0.00</span>
+                            </div>
+                            
+                            <button class="btn btn-matarix mt-4" id="proceedToPayment">
+                                <i class="fas fa-credit-card mr-2"></i>Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Notification System - Must load first -->
+    <script src="../Customer_assets/js/notifications.js"></script>
+    
+    <script>
+
+        // SIDEBAR TOGGLE
+        $('#sidebarToggle').click(function() {
+            $('#sidebar').toggleClass('show');
+        });
+
+        // CALENDAR APPOINTMENT MANAGEMENT
+        let selectedDeliveryDate = null;
+        let minAdvanceDays = 3; // Default minimum advance notice
+        let maxAdvanceDays = 30; // Default maximum advance notice
+        
+        // Get minimum advance notice from settings
+        async function getAdvanceNoticeSettings() {
+            try {
+                const response = await fetch('../api/get_order_settings.php', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                if (data.success && data.settings) {
+                    const rawSettings = data.raw_settings || {};
+                    minAdvanceDays = parseInt(rawSettings.min_advance_notice_days || data.settings.min_advance_notice_days || 3);
+                    maxAdvanceDays = parseInt(rawSettings.max_advance_notice_days || data.settings.max_advance_notice_days || 30);
+                }
+            } catch (error) {
+                console.error('Error fetching advance notice settings:', error);
+            }
+        }
+        
+        // Initialize calendar scheduler
+        $(document).ready(async function() {
+            await getAdvanceNoticeSettings();
+            
+            // Load unavailable dates from API
+            let unavailableDates = [];
+            try {
+                const response = await fetch('../api/get_unavailable_dates.php', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                if (data.success && data.unavailable_dates) {
+                    unavailableDates = data.unavailable_dates.map(date => ({ date: date }));
+                }
+            } catch (error) {
+                console.error('Error loading unavailable dates:', error);
+            }
+            
+            // Initialize calendar scheduler
+            if (window.CalendarScheduler && document.getElementById('deliveryCalendar')) {
+                const calendar = new CalendarScheduler('deliveryCalendar', {
+                    minAdvanceDays: minAdvanceDays,
+                    maxAdvanceDays: maxAdvanceDays,
+                    deliveryHours: { start: 7, end: 18 },
+                    unavailableSlots: unavailableDates,
+                    onDateSelect: function(dateStr) {
+                        selectedDeliveryDate = dateStr;
+                        
+                        // Show selected date display
+                        const display = document.getElementById('selectedDateDisplay');
+                        const dateText = document.getElementById('selectedDateText');
+                        if (display && dateText) {
+                            // Format date directly from string to avoid timezone issues
+                            const [year, month, day] = dateStr.split('-').map(Number);
+                            
+                            // Use a Date object created in local timezone to get day of week
+                            // Create at noon to avoid any timezone edge cases
+                            const localDate = new Date(year, month - 1, day, 12, 0, 0);
+                            const dayOfWeek = localDate.getDay(); // 0=Sunday, 1=Monday, etc.
+                            
+                            const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                            
+                            // Verify the date components match (to ensure no timezone shift occurred)
+                            if (localDate.getFullYear() === year && localDate.getMonth() === month - 1 && localDate.getDate() === day) {
+                                // Use the original day value from the string
+                                const formattedDate = `${dayNames[dayOfWeek]}, ${monthNames[month - 1]} ${day}, ${year}`;
+                                dateText.textContent = formattedDate;
+                            } else {
+                                // Fallback: use the date from the Date object if there was a shift
+                                const formattedDate = `${dayNames[dayOfWeek]}, ${monthNames[localDate.getMonth()]} ${localDate.getDate()}, ${localDate.getFullYear()}`;
+                                dateText.textContent = formattedDate;
+                            }
+                            display.style.display = 'block';
+                        }
+                    }
+                });
+            }
+        });
+
+        // PROCEED TO PAYMENT BUTTON - Now directly creates order (no payment method selection)
+        $('#proceedToPayment').click(function() {
+            createOrder();
+        });
+        
+        // Convert weight to kilograms (same as in load_cart.js)
+        function convertToKg(weight, unit) {
+            if (!weight || weight === 0) return 0;
+            const weightValue = parseFloat(weight);
+            if (isNaN(weightValue)) return 0;
+            switch (unit?.toLowerCase()) {
+                case 'kg': return weightValue;
+                case 'g': return weightValue / 1000;
+                case 'lb': return weightValue * 0.453592;
+                case 'oz': return weightValue * 0.0283495;
+                case 'ton': return weightValue * 1000;
+                default: return weightValue;
+            }
+        }
+        
+        // Format weight
+        function formatWeight(weightInKg) {
+            return parseFloat(weightInKg).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + ' kg';
+        }
+        
+        // Get minimum order settings
+        async function getMinOrderSettings() {
+            try {
+                const response = await fetch('../api/get_order_settings.php', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                if (data.success) {
+                    return data.settings;
+                }
+            } catch (error) {
+                console.error('Error fetching minimum order settings:', error);
+            }
+            return { min_order_weight_kg: 200, min_order_value: 0, allow_heavy_single_items: true };
+        }
+        
+        // Check minimum order requirements
+        async function validateMinOrder(cart) {
+            const settings = await getMinOrderSettings();
+            const minWeight = settings.min_order_weight_kg || 200;
+            const minValue = settings.min_order_value || 0;
+            const allowHeavySingleItems = settings.allow_heavy_single_items !== false;
+            
+            // Calculate total weight and value
+            let totalWeightKg = 0;
+            let totalAmount = 0;
+            const productDetailsMap = new Map();
+            
+            for (const item of cart) {
+                totalAmount += item.price * item.quantity;
+                
+                // Fetch product details for weight
+                try {
+                    const response = await fetch(`../api/get_product_customer.php?product_id=${item.product_id}`);
+                    const data = await response.json();
+                    if (data.success && data.product) {
+                        const product = data.product;
+                        productDetailsMap.set(item.product_id, product);
+                        
+                        if (product.weight) {
+                            const weightKg = convertToKg(product.weight, product.weight_unit);
+                            totalWeightKg += weightKg * item.quantity;
+                        }
+                    }
+                } catch (error) {
+                    console.error(`Error fetching product ${item.product_id}:`, error);
+                }
+            }
+            
+            // Check if single heavy item exceeds minimum
+            if (allowHeavySingleItems && cart.length === 1) {
+                const item = cart[0];
+                const product = productDetailsMap.get(item.product_id);
+                if (product && product.weight) {
+                    const itemWeightKg = convertToKg(product.weight, product.weight_unit) * item.quantity;
+                    if (itemWeightKg >= minWeight) {
+                        return { valid: true, reason: 'heavy_single_item' };
+                    }
+                }
+            }
+            
+            // Check weight and value requirements
+            const meetsWeight = totalWeightKg >= minWeight;
+            // Check value requirement (only if minValue is set and greater than 0)
+            const meetsValue = minValue > 0 && totalAmount >= minValue;
+            // Order meets minimum if it meets weight OR value requirement
+            // If minValue is 0, only weight requirement matters
+            const meetsMinimum = meetsWeight || (minValue > 0 && meetsValue);
+            
+            if (!meetsMinimum) {
+                let errorMsg = `Minimum order requirement not met. `;
+                if (!meetsWeight && minWeight > 0) {
+                    errorMsg += `Minimum weight is ${formatWeight(minWeight)}. Your order is ${formatWeight(totalWeightKg)}. `;
+                    errorMsg += `Add ${formatWeight(minWeight - totalWeightKg)} more to proceed.`;
+                }
+                if (!meetsValue && minValue > 0) {
+                    const neededValue = (minValue - totalAmount).toLocaleString('en-US', {minimumFractionDigits: 2});
+                    errorMsg += `Or minimum order value is ₱${minValue.toLocaleString('en-US', {minimumFractionDigits: 2})}. `;
+                    errorMsg += `Add ₱${neededValue} more to proceed.`;
+                }
+                return { valid: false, message: errorMsg, currentWeight: totalWeightKg, minWeight: minWeight };
+            }
+            
+            return { valid: true };
+        }
+        
+        // CREATE ORDER FUNCTION - No payment method needed (will be selected after approval)
+        async function createOrder() {
+            // Get checked items from sessionStorage (set by cart page)
+            let checkedItems = [];
+            try {
+                const checkedItemsData = sessionStorage.getItem('matarix_checked_cart_items');
+                if (checkedItemsData) {
+                    checkedItems = JSON.parse(checkedItemsData);
+                    // Clear it after reading (will be cleared after successful order creation)
+                }
+            } catch (e) {
+                console.error('Error reading checked items from sessionStorage:', e);
+            }
+            
+            // If no checked items, fall back to full cart (for backward compatibility)
+            let cart = [];
+            if (checkedItems.length === 0) {
+                if (window.CartManager && typeof window.CartManager.getCart === 'function') {
+                    cart = window.CartManager.getCart() || [];
+                }
+                
+                // If cart is still empty, try to get it directly from localStorage as fallback
+                if (cart.length === 0) {
+                    try {
+                        const cartData = localStorage.getItem('matarix_cart');
+                        if (cartData) {
+                            cart = JSON.parse(cartData);
+                        }
+                    } catch (e) {
+                        console.error('Error reading cart from localStorage:', e);
+                    }
+                }
+                
+                // Convert cart to checked items format
+                checkedItems = cart.map(item => ({
+                    product_id: item.product_id,
+                    quantity: item.quantity,
+                    price: item.price
+                }));
+            }
+            
+            // Debug: log checked items
+            console.log('Checked items for order:', checkedItems);
+            
+            if (!checkedItems || checkedItems.length === 0) {
+                window.showToast('No items selected for checkout! Please select items from your cart.', 'warning', 5000);
+                return;
+            }
+            
+            // Convert checked items back to cart format for validation
+            const cartForValidation = checkedItems.map(item => ({
+                product_id: item.product_id,
+                quantity: item.quantity,
+                price: item.price
+            }));
+            
+            // Validate minimum order requirements
+            const minOrderCheck = await validateMinOrder(cartForValidation);
+            if (!minOrderCheck.valid) {
+                window.showToast(minOrderCheck.message, 'error', 7000);
+                return;
+            }
+            
+            // Validate selected delivery date
+            if (!selectedDeliveryDate) {
+                window.showToast('Please select a delivery date from the calendar.', 'warning', 5000);
+                return;
+            }
+            
+            // Prepare availability slots (just date, no time)
+            const availabilitySlots = [{
+                slot_number: 1,
+                date: selectedDeliveryDate,
+                time: null, // No time selection
+                is_preferred: true
+            }];
+            
+            // Show confirmation modal before creating order
+            const confirmed = await window.showConfirm({
+                title: 'Confirm Order Submission',
+                message: 'Are you sure you want to submit this order? Your order will be sent for admin approval.',
+                icon: 'info',
+                confirmText: 'Confirm Order',
+                cancelText: 'Cancel',
+                confirmClass: 'btn-primary',
+                showLoading: true,
+                onConfirm: async () => {
+                    // Show loading
+                    window.showLoading('Creating your order...');
+                    
+                    // Prepare cart items for API (use checked items)
+                    const cartItems = checkedItems.map(item => ({
+                        product_id: item.product_id,
+                        quantity: item.quantity,
+                        price: item.price
+                    }));
+                    
+                    try {
+                        const response = await fetch('../api/create_order.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            credentials: 'include',
+                            body: JSON.stringify({
+                                cart_items: cartItems,
+                                availability_slots: availabilitySlots
+                            })
+                        });
+                        
+                        // Check for 401 Unauthorized
+                        if (response.status === 401) {
+                            window.hideLoading();
+                            alert('Your session has expired. Please log in again.');
+                            sessionStorage.clear();
+                            window.location.href = '../Customer/Login.html';
+                            return;
+                        }
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            // Clear cart
+                            window.CartManager.clearCart();
+                            
+                            // Clear checked items from sessionStorage
+                            sessionStorage.removeItem('matarix_checked_cart_items');
+                            
+                            // Hide loading first
+                            window.hideLoading();
+                            
+                            // Small delay to ensure loading is hidden before showing success modal
+                            await new Promise(resolve => setTimeout(resolve, 100));
+                            
+                            // Show success modal with order details - this will stay open until user clicks
+                            await window.showSuccessModal({
+                                title: 'Order Created Successfully!',
+                                message: 'Your order has been submitted and is pending admin approval.',
+                                details: `
+                                    <div class="order-details">
+                                        <p><strong>Order ID:</strong> ORD-${String(data.order_id).padStart(4, '0')}</p>
+                                        <p class="mb-0"><small>You will be notified once your order is approved.</small></p>
+                                    </div>
+                                `,
+                                buttonText: 'View Order',
+                                onClose: () => {
+                                    // Redirect to order summary with order_id
+                                    const userId = sessionStorage.getItem('user_id');
+                                    if (userId) {
+                                        window.location.href = `OrderSummary.html?order_id=${data.order_id}&user_id=${userId}`;
+                                    } else {
+                                        window.location.href = `OrderSummary.html?order_id=${data.order_id}`;
+                                    }
+                                }
+                            });
+                        } else {
+                            window.hideLoading();
+                            // Check if it's an authentication error
+                            if (data.message && (data.message.toLowerCase().includes('not authenticated') || data.message.toLowerCase().includes('log in'))) {
+                                alert('Your session has expired. Please log in again.');
+                                sessionStorage.clear();
+                                window.location.href = '../Customer/Login.html';
+                            } else {
+                                window.showToast('Failed to create order: ' + (data.message || 'Unknown error'), 'error', 7000);
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Create order error:', error);
+                        window.hideLoading();
+                        window.showToast('Connection error. Please check your internet connection and try again.', 'error', 7000);
+                    }
+                }
+            });
+        }
+
+        // KEYBOARD NAVIGATION
+        $(document).keydown(function(e) {
+            // Handle keyboard navigation if needed
+        });
+
+        // PREVENT POPUP CONTENT CLICKS FROM CLOSING POPUP
+        $('.popup-content').click(function(e) {
+            e.stopPropagation();
+        });
+        
+    </script>
+    
+    <!-- Cart Manager - Must load for cart functionality -->
+    <script src="../Customer_assets/js/cart_manager.js"></script>
+    
+    <!-- Customer Authentication Check - MUST load first to verify session -->
+    <script src="../Customer_assets/js/customer_auth_check.js"></script>
+    
+    <!-- URL Authentication Helper - MUST load to preserve user_id in URLs -->
+    <script src="../Customer_assets/js/url_auth_helper.js"></script>
+    
+    <!-- Load Checkout Data -->
+    <script src="../Customer_assets/js/load_checkout.js"></script>
+    
+    <!-- Calendar Scheduler - Load after notifications -->
+    <script src="../Customer_assets/js/calendar-scheduler.js"></script>
+    
+    <!-- Navigation Tracker - Handle origin-aware navigation -->
+    <script src="../Customer_assets/js/navigation-tracker.js"></script>
+    <script src="../Customer_assets/js/sidebar-navigation.js"></script>
+</body>
+</html>
